@@ -1,9 +1,9 @@
-import {Router} from 'express';
+import { Router } from 'express';
 
-import StatesRouter from './states.routes';
+import statesRouter from './states.routes';
 
 const routes = Router();
 
-routes.use(StatesRouter);
+routes.use('/states', statesRouter);
 
 export default routes;

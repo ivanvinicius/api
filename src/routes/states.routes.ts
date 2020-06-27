@@ -1,8 +1,8 @@
-import {Router } from 'express';
+import { Router } from 'express';
 
 const statesRouter = Router();
 
-statesRouter.get('/', async(request, response) => {
+statesRouter.get('/', async (request, response) => {
   return response.send('states');
 });
 

@@ -1,9 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-} from 'express';
-
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('states')
 class State {
