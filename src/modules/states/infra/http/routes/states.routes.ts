@@ -1,16 +1,10 @@
 import { Router } from 'express';
-import { getCustomRepository } from 'typeorm';
 
-import StateRepository from '../repositories/StatesRepository';
+import StateController from '@modules/states/infra/http/controllers/StateController';
 
 const statesRouter = Router();
+const stateController = new StateController();
 
-statesRouter.get('/', async (request, response) => {
-  const stateRepository = getCustomRepository(StateRepository);
-
-  const states = await stateRepository.find();
-
-  return response.json(states);
-});
+statesRouter.post('/', stateController.create);
 
 export default statesRouter;
