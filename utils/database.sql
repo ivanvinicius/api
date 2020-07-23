@@ -60,7 +60,7 @@ CREATE TABLE public.users (
   id uuid DEFAULT uuid_generate_v4 (),
   name VARCHAR NOT NULL,
   email VARCHAR NOT NULL,
-  password_hash VARCHAR NOT NULL,
+  password VARCHAR NOT NULL,
   provider BOOLEAN NOT NULL,
   CONSTRAINT pk_users PRIMARY KEY (id)
 );
@@ -265,10 +265,10 @@ insert into categories (category_id, name) values (null, 'Fertilizantes');
 
 insert into products (category_id, name, composition) values ('c457d187-9f9d-47d9-9e0b-2a65197a6679', 'Prime Plus', null);
 
-insert into users (adress_id, name, email, password_hash, provider )
+insert into users (adress_id, name, email, password, provider )
 values ('a6046f76-7887-44e1-ab57-8c7f7c53498f', 'Ivan Vinicius Boneti', 'ivan@client.com', '123456', false);
 
-insert into users (adress_id, name, email, password_hash, provider )
+insert into users (adress_id, name, email, password, provider )
 values ('97d07b22-ff54-46cb-a46a-2b5e366b9049', 'Cravil Coop', 'cravil@provider.com', '123456', true);
 
 insert into products_measures (
