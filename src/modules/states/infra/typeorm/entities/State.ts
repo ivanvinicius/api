@@ -1,12 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('states')
-class State {
+export default class State {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar')
+  @Column()
   name: string;
 }
-
-export default State;

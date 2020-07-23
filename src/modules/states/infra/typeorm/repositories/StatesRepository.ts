@@ -1,14 +1,16 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { Repository, getRepository } from 'typeorm';
 
-import State from '../models/State';
+import State from '@modules/states/infra/typeorm/entities/State';
+import IStatesRepository from '@modules/states/repositories/IStatesRepository';
 
-@EntityRepository(State)
-class StateRepository extends Repository<State> {
-  public async index(): Promise<State[] | null> {
-    const states = await this.find();
+export default class StatesRepository implements IStatesRepository {
+  private ormRepository: Repository<State>;
 
-    return states || null;
+  constructor() {
+    this.ormRepository = getRepository(State);
+  }
+
+  public async findAll(): Promise<State[] | undefined> {
+    return this.ormRepository.find();
   }
 }
-
-export default StateRepository;

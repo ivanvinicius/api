@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import StateController from '@modules/states/infra/http/controllers/StateController';
+import StatesController from '@modules/states/infra/http/controllers/StatesController';
 
 const statesRouter = Router();
-const stateController = new StateController();
+const statesController = new StatesController();
 
-statesRouter.post('/', stateController.create);
+statesRouter.get('/', statesController.index);
 
 export default statesRouter;
