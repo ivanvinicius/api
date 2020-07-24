@@ -31,7 +31,7 @@ CREATE TABLE public.brands (
 
 CREATE TABLE public.categories (
   id uuid DEFAULT uuid_generate_v4 (),
-  subcategory_id uuid,
+  category_id uuid,
   name VARCHAR NOT NULL,
   CONSTRAINT pk_categories PRIMARY KEY (id)
 );
@@ -164,7 +164,7 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.categories ADD CONSTRAINT categories_categories_fk
-FOREIGN KEY (subcategory_id)
+FOREIGN KEY (category_id)
 REFERENCES public.categories (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION

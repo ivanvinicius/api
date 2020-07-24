@@ -11,4 +11,4 @@
 - Create Session
 
 # Categories
-- list with subcategories
+- list categories

@@ -4,18 +4,26 @@ import ICategoriesRepository from '@modules/categories/repositories/ICategoriesR
 import AppError from '@shared/errors/AppError';
 import Category from '@modules/categories/infra/typeorm/entities/Category';
 
+interface IRequest {
+  category_id: string;
+}
+
 @injectable()
-export default class ListCategoryService {
+export default class ListSubcategoryService {
   constructor(
     @inject('CategoriesRepository')
     private categoriesRepository: ICategoriesRepository,
   ) {}
 
-  public async execute(): Promise<Category[] | undefined> {
-    const categories = await this.categoriesRepository.findAllCategories();
+  public async execute({
+    category_id,
+  }: IRequest): Promise<Category[] | undefined> {
+    const categories = await this.categoriesRepository.findAllByCategory(
+      category_id,
+    );
 
     if (!categories) {
-      throw new AppError('Category does not exists.');
+      throw new AppError('Subcategory does not exists.');
     }
 
     return categories;

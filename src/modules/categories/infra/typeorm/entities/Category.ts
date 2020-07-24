@@ -6,7 +6,7 @@ export default class Category {
   id: string;
 
   @Column('uuid')
-  subcategory_id?: string;
+  category_id?: string;
 
   @Column()
   name: string;
