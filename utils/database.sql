@@ -59,7 +59,7 @@ CREATE TABLE public.users (
   adress_id uuid,
   name VARCHAR NOT NULL,
   email VARCHAR NOT NULL,
-  password_hash VARCHAR NOT NULL,
+  password VARCHAR NOT NULL,
   provider BOOLEAN NOT NULL,
   CONSTRAINT pk_users PRIMARY KEY (id)
 );

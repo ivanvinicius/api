@@ -15,7 +15,7 @@ export default class User {
   id: string;
 
   @Column('uuid')
-  adress_id: string;
+  adress_id?: string;
 
   @OneToOne(() => Adress, adress => adress.user)
   @JoinColumn({ name: 'adress_id', referencedColumnName: 'id' })

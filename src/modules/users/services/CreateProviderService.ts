@@ -6,6 +6,7 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
+  adress_id: string;
   name: string;
   email: string;
   password: string;
@@ -20,7 +21,12 @@ export default class CreateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  public async execute({ name, email, password }: IRequest): Promise<User> {
+  public async execute({
+    adress_id,
+    name,
+    email,
+    password,
+  }: IRequest): Promise<User> {
     const checkProviderExist = await this.usersRepository.findByEmail(email);
 
     if (checkProviderExist) {
@@ -30,13 +36,12 @@ export default class CreateUserService {
     const hashedPassword = await this.hashProvider.generateHash(password);
 
     const provider = await this.usersRepository.create({
+      adress_id,
       name,
       email,
       password: hashedPassword,
       provider: true,
     });
-
-    // chamar service de endereço
 
     return provider;
   }
