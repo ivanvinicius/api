@@ -1,23 +1,22 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
-import UsersController from '@modules/users/infra/http/controllers/UsersController';
+import ClientsController from '@modules/users/infra/http/controllers/ClientsController';
 
-const usersRouter = Router();
+const clientsRouter = Router();
 
-const usersController = new UsersController();
+const clientsController = new ClientsController();
 
-usersRouter.post(
+clientsRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
       email: Joi.string().email().required(),
       password: Joi.string().required(),
-      provider: Joi.boolean().required(),
     },
   }),
-  usersController.create,
+  clientsController.create,
 );
 
-export default usersRouter;
+export default clientsRouter;

@@ -9,11 +9,10 @@ interface IRequest {
   name: string;
   email: string;
   password: string;
-  provider: boolean;
 }
 
 @injectable()
-export default class CreateUserService {
+export default class CreateClientService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -21,27 +20,22 @@ export default class CreateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  public async execute({
-    name,
-    email,
-    password,
-    provider,
-  }: IRequest): Promise<User> {
-    const checkUserExist = await this.usersRepository.findByEmail(email);
+  public async execute({ name, email, password }: IRequest): Promise<User> {
+    const checkClientExist = await this.usersRepository.findByEmail(email);
 
-    if (checkUserExist) {
+    if (checkClientExist) {
       throw new AppError('Email adress already used.');
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    const user = await this.usersRepository.create({
+    const client = await this.usersRepository.create({
       name,
       email,
       password: hashedPassword,
-      provider,
+      provider: false,
     });
 
-    return user;
+    return client;
   }
 }

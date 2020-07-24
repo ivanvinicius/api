@@ -11,6 +11,10 @@ export default class UsersRepository implements IUsersRepository {
     this.ormRepository = getRepository(User);
   }
 
+  public async findById(id: string): Promise<User | undefined> {
+    return this.ormRepository.findOne({ where: { id } });
+  }
+
   public async findByEmail(email: string): Promise<User | undefined> {
     return this.ormRepository.findOne({ where: { email } });
   }
@@ -21,5 +25,9 @@ export default class UsersRepository implements IUsersRepository {
     await this.ormRepository.save(user);
 
     return user;
+  }
+
+  public async saveUpdate(user: User): Promise<User> {
+    return this.ormRepository.save(user);
   }
 }
