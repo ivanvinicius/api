@@ -31,7 +31,7 @@ CREATE TABLE public.brands (
 
 CREATE TABLE public.categories (
   id uuid DEFAULT uuid_generate_v4 (),
-  subcategory_id uuid NOT NULL,
+  subcategory_id uuid,
   name VARCHAR NOT NULL,
   CONSTRAINT pk_categories PRIMARY KEY (id)
 );
