@@ -1,6 +1,5 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-
 CREATE TABLE public.states (
   id uuid DEFAULT uuid_generate_v4 (),
   name VARCHAR NOT NULL,
@@ -32,7 +31,7 @@ CREATE TABLE public.brands (
 
 CREATE TABLE public.categories (
   id uuid DEFAULT uuid_generate_v4 (),
-  category_id uuid,
+  subcategory_id uuid NOT NULL,
   name VARCHAR NOT NULL,
   CONSTRAINT pk_categories PRIMARY KEY (id)
 );
@@ -49,18 +48,18 @@ CREATE TABLE public.products (
 
 CREATE TABLE public.adresses (
   id uuid DEFAULT uuid_generate_v4 (),
-  provider_id uuid NOT NULL,
   state_id uuid NOT NULL,
   city VARCHAR NOT NULL,
-  CONSTRAINT pk_adresses PRIMARY KEY (id, provider_id)
+  CONSTRAINT pk_adresses PRIMARY KEY (id)
 );
 
 
 CREATE TABLE public.users (
   id uuid DEFAULT uuid_generate_v4 (),
+  adress_id uuid,
   name VARCHAR NOT NULL,
   email VARCHAR NOT NULL,
-  password VARCHAR NOT NULL,
+  password_hash VARCHAR NOT NULL,
   provider BOOLEAN NOT NULL,
   CONSTRAINT pk_users PRIMARY KEY (id)
 );
@@ -122,16 +121,9 @@ CREATE TABLE public.budgets (
 );
 
 
-ALTER TABLE public.adresses ADD CONSTRAINT states_adresses_fk
+ALTER TABLE public.adresses ADD CONSTRAINT state_adresses_fk
 FOREIGN KEY (state_id)
 REFERENCES public.states (id)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE public.adresses ADD CONSTRAINT providers_adresses_fk
-FOREIGN KEY (provider_id)
-REFERENCES public.users (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -171,8 +163,8 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.categories ADD CONSTRAINT subcategories_categories_fk
-FOREIGN KEY (category_id)
+ALTER TABLE public.categories ADD CONSTRAINT categories_categories_fk
+FOREIGN KEY (subcategory_id)
 REFERENCES public.categories (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
@@ -188,6 +180,13 @@ NOT DEFERRABLE;
 ALTER TABLE public.products_measures ADD CONSTRAINT products_products_measures_fk
 FOREIGN KEY (product_id)
 REFERENCES public.products (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.users ADD CONSTRAINT adresses_users_fk
+FOREIGN KEY (adress_id)
+REFERENCES public.adresses (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;

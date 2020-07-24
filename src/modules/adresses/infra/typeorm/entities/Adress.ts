@@ -1,16 +1,14 @@
-/* eslint-disable lines-between-class-members */
-
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   JoinColumn,
-  OneToOne,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 
-import User from '@modules/users/infra/typeorm/entities/User';
 import State from '@modules/states/infra/typeorm/entities/State';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 @Entity('adresses')
 export default class Adresses {
@@ -18,16 +16,14 @@ export default class Adresses {
   id: string;
 
   @Column('uuid')
-  provider_id: string;
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'provider_id' })
-  provider: User;
-
-  @Column('uuid')
   state_id: string;
-  @ManyToOne(() => State)
-  @JoinColumn({ name: 'state_id' })
+
+  @ManyToOne(() => State, state => state.adress)
+  @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
   state: State;
+
+  @OneToMany(() => User, user => user.adress)
+  user: User;
 
   @Column()
   city: string;

@@ -10,7 +10,11 @@ export default class AdressesRepository implements IAdressesRepository {
     this.ormRepository = getRepository(Adresses);
   }
 
-  public async findAll(): Promise<Adresses[] | undefined> {
-    return this.ormRepository.find();
+  public async findAllByState(
+    state_id: string,
+  ): Promise<Adresses[] | undefined> {
+    return this.ormRepository.find({
+      where: { state_id },
+    });
   }
 }

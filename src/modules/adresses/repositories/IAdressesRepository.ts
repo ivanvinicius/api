@@ -1,5 +1,5 @@
 import Adresses from '@modules/adresses/infra/typeorm/entities/Adress';
 
 export default interface IAdressesRepository {
-  findAll(): Promise<Adresses[] | undefined>;
+  findAllByState(state_id: string): Promise<Adresses[] | undefined>;
 }

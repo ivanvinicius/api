@@ -3,6 +3,10 @@ import { inject, injectable } from 'tsyringe';
 import Adresses from '@modules/adresses/infra/typeorm/entities/Adress';
 import IAdressesRepository from '@modules/adresses/repositories/IAdressesRepository';
 
+interface IRequest {
+  state_id: string;
+}
+
 @injectable()
 export default class ListAdressesService {
   constructor(
@@ -10,7 +14,9 @@ export default class ListAdressesService {
     private adressesRepository: IAdressesRepository,
   ) {}
 
-  public async execute(): Promise<Adresses[] | undefined> {
-    return this.adressesRepository.findAll();
+  public async execute({
+    state_id,
+  }: IRequest): Promise<Adresses[] | undefined> {
+    return this.adressesRepository.findAllByState(state_id);
   }
 }
