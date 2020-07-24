@@ -49,10 +49,10 @@ CREATE TABLE public.products (
 
 CREATE TABLE public.adresses (
   id uuid DEFAULT uuid_generate_v4 (),
+  provider_id uuid NOT NULL,
   state_id uuid NOT NULL,
-  user_id uuid NOT NULL,
   city VARCHAR NOT NULL,
-  CONSTRAINT pk_adresses PRIMARY KEY (id)
+  CONSTRAINT pk_adresses PRIMARY KEY (id, provider_id)
 );
 
 
@@ -129,8 +129,8 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.adresses ADD CONSTRAINT users_adresses_fk
-FOREIGN KEY (user_id)
+ALTER TABLE public.adresses ADD CONSTRAINT providers_adresses_fk
+FOREIGN KEY (provider_id)
 REFERENCES public.users (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
@@ -240,49 +240,3 @@ REFERENCES public.areas (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
-
-
-INSERT INTO states (name) VALUES ('SC');
-INSERT INTO states (name) VALUES ('PR');
-INSERT INTO states (name) VALUES ('RS');
-
-INSERT INTO cultures (name) VALUES ('Soja');
-INSERT INTO cultures (name) VALUES ('Milho');
-INSERT INTO cultures (name) VALUES ('Tabaco');
-
-INSERT INTO measures (name, type) VALUES ('Kg', 1);
-INSERT INTO measures (name, type) VALUES ('Lt', 1);
-INSERT INTO measures (name, type) VALUES ('Hectares', 2);
-INSERT INTO measures (name, type) VALUES ('Bushels', 2);
-
-INSERT INTO brands (name) VALUES ('Timac');
-INSERT INTO brands (name) VALUES ('Nideira');
-INSERT INTO brands (name) VALUES ('Pionner');
-
-insert into categories (category_id, name) values (null, 'Agrotóxicos');
-insert into categories (category_id, name) values ('f1383621-4f9d-4f90-8f13-96970cf92334', 'Herbicida');
-insert into categories (category_id, name) values (null, 'Fertilizantes');
-
-insert into products (category_id, name, composition) values ('c457d187-9f9d-47d9-9e0b-2a65197a6679', 'Prime Plus', null);
-
-insert into users (adresses_id, name, email, password, provider )
-values ('a6046f76-7887-44e1-ab57-8c7f7c53498f', 'Ivan Vinicius Boneti', 'ivan@client.com', '123456', false);
-
-insert into users (adresses_id, name, email, password, provider )
-values ('97d07b22-ff54-46cb-a46a-2b5e366b9049', 'Cravil Coop', 'cravil@provider.com', '123456', true);
-
-insert into products_measures (
- provider_id,
- product_id,
- brand_id,
- measure_id,
- volume,
- price
-)
-values (
-  '4ab496a7-90a5-49f0-8869-bfdd6cdd0f91',
-  '14e19be1-64b1-4248-a727-a658d8053c06',
-  'f733e18c-b443-40af-b240-1f550e698273',
-  '149cf7fb-6c2f-4e1c-96e2-e52c6f530a35',
-  5,
-  895.33);
