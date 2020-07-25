@@ -4,7 +4,7 @@ import State from '@modules/states/infra/typeorm/entities/State';
 import IStatesRepository from '@modules/states/repositories/IStatesRepository';
 
 @injectable()
-export default class ListStatesService {
+export default class ListStateService {
   constructor(
     @inject('StatesRepository')
     private statesRepository: IStatesRepository,

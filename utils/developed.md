@@ -12,3 +12,8 @@
 
 # Categories
 - list categories
+- list subcategories by category_id
+
+
+# Products
+- list products with join in categories

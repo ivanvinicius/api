@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Exclude } from 'class-transformer';
 
 import Adress from '@modules/adresses/infra/typeorm/entities/Adress';
-import { Exclude } from 'class-transformer';
 
 @Entity('states')
 export default class State {

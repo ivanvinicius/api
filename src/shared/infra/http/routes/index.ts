@@ -9,6 +9,7 @@ import adressesRouter from '@modules/adresses/infra/http/routes/adresses.routes'
 import profilesRouter from '@modules/users/infra/http/routes/profiles.routes';
 import categoriesRouter from '@modules/categories/infra/http/routes/categories.routes';
 import subcategoriesRouter from '@modules/categories/infra/http/routes/subcategories.routes';
+import productsRouter from '@modules/products/infra/http/routes/products.routes';
 
 const routes = Router();
 
@@ -21,5 +22,6 @@ routes.use('/adresses', adressesRouter);
 routes.use('/profiles', profilesRouter);
 routes.use('/categories', categoriesRouter);
 routes.use('/subcategories', subcategoriesRouter);
+routes.use('/products', productsRouter);
 
 export default routes;
