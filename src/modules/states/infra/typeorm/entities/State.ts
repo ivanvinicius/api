@@ -13,5 +13,5 @@ export default class State {
   name: string;
 
   @OneToMany(() => Adress, adress => adress.state)
-  adress: Adress;
+  adress: Adress[];
 }

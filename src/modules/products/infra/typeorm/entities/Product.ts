@@ -15,13 +15,13 @@ export default class Product {
   @Column('uuid')
   category_id: string;
 
-  @ManyToOne(() => Category, category => category.product)
-  @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
-  category: Category;
-
   @Column()
   name: string;
 
   @Column()
   composition?: string;
+
+  @ManyToOne(() => Category, category => category.product)
+  @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
+  category: Category;
 }

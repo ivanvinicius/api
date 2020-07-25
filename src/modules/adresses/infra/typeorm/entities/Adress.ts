@@ -18,13 +18,13 @@ export default class Adresses {
   @Column('uuid')
   state_id: string;
 
-  @ManyToOne(() => State, state => state.adress)
-  @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
-  state: State;
-
   @OneToMany(() => User, user => user.adress)
-  user: User;
+  user: User[];
 
   @Column()
   city: string;
+
+  @ManyToOne(() => State, state => state.adress)
+  @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
+  state: State;
 }

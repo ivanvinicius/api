@@ -17,10 +17,6 @@ export default class User {
   @Column('uuid')
   adress_id?: string;
 
-  @OneToOne(() => Adress, adress => adress.user)
-  @JoinColumn({ name: 'adress_id', referencedColumnName: 'id' })
-  adress: Adress;
-
   @Column()
   name: string;
 
@@ -33,4 +29,8 @@ export default class User {
 
   @Column()
   provider: boolean;
+
+  @OneToOne(() => Adress, adress => adress.user)
+  @JoinColumn({ name: 'adress_id', referencedColumnName: 'id' })
+  adress: Adress;
 }

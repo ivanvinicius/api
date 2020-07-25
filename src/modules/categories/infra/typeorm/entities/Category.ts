@@ -13,5 +13,8 @@ export default class Category {
   name: string;
 
   @OneToMany(() => Product, product => product.category)
-  product: Product;
+  product: Product[];
+
+  // @OneToMany(() => Category, category => category)
+  // category: Category[];
 }
