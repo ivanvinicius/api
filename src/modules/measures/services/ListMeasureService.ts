@@ -1,6 +1,5 @@
 import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
 import Measure from '../infra/typeorm/entities/Measure';
 import IMeasuresRepository from '../repositories/IMeasuresRepository';
 
@@ -12,12 +11,6 @@ export default class ListMeasureService {
   ) {}
 
   public async execute(): Promise<Measure[] | undefined> {
-    const measures = await this.measuresRepository.findAll();
-
-    if (!measures) {
-      throw new AppError('Measure does not exists.');
-    }
-
-    return measures;
+    return this.measuresRepository.findAll();
   }
 }

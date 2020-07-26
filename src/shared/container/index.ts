@@ -21,6 +21,8 @@ import IBrandsRepository from '@modules/brands/repositories/IBrandsRepository';
 import BrandsRepository from '@modules/brands/infra/typeorm/repositories/BrandsRepository';
 import IMeasuresRepository from '@modules/measures/repositories/IMeasuresRepository';
 import MeasuresRepository from '@modules/measures/infra/typeorm/repositories/MeasuresRepository';
+import ICulturesRepository from '@modules/cultures/repositories/ICulturesRepository';
+import CulturesRepository from '@modules/cultures/infra/typeorm/repositories/CulturesRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -55,4 +57,9 @@ container.registerSingleton<IBrandsRepository>(
 container.registerSingleton<IMeasuresRepository>(
   'MeasuresRepository',
   MeasuresRepository,
+);
+
+container.registerSingleton<ICulturesRepository>(
+  'CulturesRepository',
+  CulturesRepository,
 );
