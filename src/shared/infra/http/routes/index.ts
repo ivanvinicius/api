@@ -11,6 +11,7 @@ import categoriesRouter from '@modules/categories/infra/http/routes/categories.r
 import subcategoriesRouter from '@modules/categories/infra/http/routes/subcategories.routes';
 import productsRouter from '@modules/products/infra/http/routes/products.routes';
 import brandsRouter from '@modules/brands/infra/http/routes/brands.routes';
+import measuresRouter from '@modules/measures/infra/http/routes/measures.routes';
 
 const routes = Router();
 
@@ -25,5 +26,6 @@ routes.use('/categories', categoriesRouter);
 routes.use('/subcategories', subcategoriesRouter);
 routes.use('/products', productsRouter);
 routes.use('/brands', brandsRouter);
+routes.use('/measures', measuresRouter);
 
 export default routes;

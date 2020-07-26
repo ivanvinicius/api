@@ -21,3 +21,7 @@
 
 # Brands
 - list brands
+
+# Measures
+*** TODO update entities ***
+- list Measures
