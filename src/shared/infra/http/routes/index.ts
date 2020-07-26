@@ -10,6 +10,7 @@ import profilesRouter from '@modules/users/infra/http/routes/profiles.routes';
 import categoriesRouter from '@modules/categories/infra/http/routes/categories.routes';
 import subcategoriesRouter from '@modules/categories/infra/http/routes/subcategories.routes';
 import productsRouter from '@modules/products/infra/http/routes/products.routes';
+import brandsRouter from '@modules/brands/infra/http/routes/brands.routes';
 
 const routes = Router();
 
@@ -23,5 +24,6 @@ routes.use('/profiles', profilesRouter);
 routes.use('/categories', categoriesRouter);
 routes.use('/subcategories', subcategoriesRouter);
 routes.use('/products', productsRouter);
+routes.use('/brands', brandsRouter);
 
 export default routes;

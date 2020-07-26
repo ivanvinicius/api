@@ -11,9 +11,13 @@
 - Create Session
 
 # Categories
+*** TODO create a querySelector to select categories and subcategories together  ***
 - list categories
 - list subcategories by category_id
 
 
 # Products
 - list products with join in categories
+
+# Brands
+- list brands
