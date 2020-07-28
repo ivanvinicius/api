@@ -2,7 +2,7 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToOne,
+  ManyToOne,
   JoinColumn,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
@@ -30,7 +30,7 @@ export default class User {
   @Column()
   provider: boolean;
 
-  @OneToOne(() => Adress, adress => adress.user)
+  @ManyToOne(() => Adress, adress => adress.user)
   @JoinColumn({ name: 'adress_id', referencedColumnName: 'id' })
   adress: Adress;
 }

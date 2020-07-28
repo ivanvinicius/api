@@ -5,6 +5,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+
 import Category from '@modules/categories/infra/typeorm/entities/Category';
 
 @Entity('products')
