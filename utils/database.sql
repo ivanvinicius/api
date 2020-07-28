@@ -1,4 +1,8 @@
+CREATE DATABASE gobudget;
+
+
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 
 CREATE TABLE public.states (
   id uuid DEFAULT uuid_generate_v4 (),
@@ -92,10 +96,9 @@ CREATE TABLE public.compositions (
   provider_id uuid NOT NULL,
   culture_id uuid NOT NULL,
   product_measure_id uuid NOT NULL,
-  measure_id uuid NOT NULL,
-  volume NUMERIC(10,2) NOT NULL,
   productivity SMALLINT NOT NULL,
-  CONSTRAINT pk_compositions PRIMARY KEY (id, provider_id, culture_id)
+  volume NUMERIC(10,2) NOT NULL,
+  CONSTRAINT pk_compositions PRIMARY KEY (id, provider_id, culture_id, productivity)
 );
 
 
@@ -117,11 +120,12 @@ CREATE TABLE public.budgets (
   provider_id uuid NOT NULL,
   composition_id uuid NOT NULL,
   culture_id uuid NOT NULL,
+  productivity SMALLINT NOT NULL,
   CONSTRAINT pk_budgets PRIMARY KEY (id)
 );
 
 
-ALTER TABLE public.adresses ADD CONSTRAINT state_adresses_fk
+ALTER TABLE public.adresses ADD CONSTRAINT state_adress_fk
 FOREIGN KEY (state_id)
 REFERENCES public.states (id)
 ON DELETE NO ACTION
@@ -143,13 +147,6 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.products_measures ADD CONSTRAINT measures_products_measures_fk
-FOREIGN KEY (measure_id)
-REFERENCES public.measures (id)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE public.compositions ADD CONSTRAINT measures_compositions_fk
 FOREIGN KEY (measure_id)
 REFERENCES public.measures (id)
 ON DELETE NO ACTION
@@ -227,8 +224,8 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.budgets ADD CONSTRAINT compositions_budgets_fk
-FOREIGN KEY (provider_id, composition_id, culture_id)
-REFERENCES public.compositions (provider_id, id, culture_id)
+FOREIGN KEY (provider_id, composition_id, culture_id, productivity)
+REFERENCES public.compositions (provider_id, id, culture_id, productivity)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
