@@ -25,6 +25,8 @@ import MeasuresRepository from '@modules/measures/infra/typeorm/repositories/Mea
 
 import ICulturesRepository from '@modules/cultures/repositories/ICulturesRepository';
 import CulturesRepository from '@modules/cultures/infra/typeorm/repositories/CulturesRepository';
+import IProductsMeasuresRepository from '@modules/productsMeasures/repositories/IProductsMeasuresRepository';
+import ProductsMeasuresRepository from '@modules/productsMeasures/infra/typeorm/repositories/ProductsMeasuresRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -64,4 +66,9 @@ container.registerSingleton<IMeasuresRepository>(
 container.registerSingleton<ICulturesRepository>(
   'CulturesRepository',
   CulturesRepository,
+);
+
+container.registerSingleton<IProductsMeasuresRepository>(
+  'ProductsMeasuresRepository',
+  ProductsMeasuresRepository,
 );
