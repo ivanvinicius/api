@@ -35,15 +35,22 @@ CREATE TABLE public.brands (
 
 CREATE TABLE public.categories (
   id uuid DEFAULT uuid_generate_v4 (),
-  category_id uuid,
   name VARCHAR NOT NULL,
   CONSTRAINT pk_categories PRIMARY KEY (id)
 );
 
 
-CREATE TABLE public.products (
+CREATE TABLE public.subcategories (
   id uuid DEFAULT uuid_generate_v4 (),
   category_id uuid NOT NULL,
+  name VARCHAR NOT NULL,
+  CONSTRAINT pk_subcategories PRIMARY KEY (id)
+);
+
+
+CREATE TABLE public.products (
+  id uuid DEFAULT uuid_generate_v4 (),
+  subcategory_id uuid NOT NULL,
   name VARCHAR NOT NULL,
   composition VARCHAR,
   CONSTRAINT pk_products PRIMARY KEY (id)
@@ -160,16 +167,16 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.categories ADD CONSTRAINT categories_categories_fk
+ALTER TABLE public.subcategories ADD CONSTRAINT categories_subcategories_fk
 FOREIGN KEY (category_id)
 REFERENCES public.categories (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.products ADD CONSTRAINT categories_products_fk
-FOREIGN KEY (category_id)
-REFERENCES public.categories (id)
+ALTER TABLE public.products ADD CONSTRAINT subcategories_products_fk
+FOREIGN KEY (subcategory_id)
+REFERENCES public.subcategories (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;

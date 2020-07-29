@@ -22,7 +22,7 @@ export default class Product {
   @Column()
   composition?: string;
 
-  @ManyToOne(() => Category, category => category.product)
+  @ManyToOne(() => Category, category => category.product, { eager: true })
   @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
   category: Category;
 }

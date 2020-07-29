@@ -14,7 +14,4 @@ export default class Category {
 
   @OneToMany(() => Product, product => product.category)
   product: Product[];
-
-  // @OneToMany(() => Category, category => category)
-  // category: Category[];
 }
