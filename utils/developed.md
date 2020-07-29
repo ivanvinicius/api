@@ -42,7 +42,7 @@ const user = await this.ormRepository
 
 # Products_Measures
 - middleware ensure is provider
-- Create *** maybetreat numeric informations ***
+- Create *** maybe treat numeric informations ***
 - Update *** mayber treat numeric informations ***
 - Delete
 -list measures by provider with join provider product measure
