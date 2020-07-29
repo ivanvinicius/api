@@ -24,7 +24,7 @@ export default class Adresses {
   @Column()
   city: string;
 
-  @ManyToOne(() => State, state => state.adress)
+  @ManyToOne(() => State, state => state.adress, { eager: true })
   @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
   state: State;
 }

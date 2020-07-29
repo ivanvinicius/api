@@ -4,11 +4,6 @@ import AppError from '@shared/errors/AppError';
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUsersRepository';
 
-interface IRequest {
-  user_id: string;
-  is_provider?: boolean;
-}
-
 @injectable()
 export default class ShowProfileService {
   constructor(
@@ -16,14 +11,8 @@ export default class ShowProfileService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({
-    user_id,
-    is_provider,
-  }: IRequest): Promise<User | undefined> {
-    const userProfile = await this.usersRepository.showProfile({
-      user_id,
-      is_provider,
-    });
+  public async execute(id: string): Promise<User | undefined> {
+    const userProfile = await this.usersRepository.showProfile(id);
 
     if (!userProfile) {
       throw new AppError('User does not exists.');

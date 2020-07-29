@@ -27,3 +27,11 @@
 # Cultures
 - list cultures
 
+# Products_Measures
+
+*** TODO Colorcar joins nas entities  / fazer a listagem de products_measures coma informações relevantes para as compositions ***
+- Create
+- Update
+- Delete
+
+

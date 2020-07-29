@@ -6,6 +6,7 @@
   "username": "postgres",
   "password": "docker",
   "database": "gobudget",
+  "logging": true,
   "entities": [
     "./src/modules/**/infra/typeorm/entities/*.ts"
   ],

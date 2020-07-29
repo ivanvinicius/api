@@ -30,7 +30,7 @@ export default class User {
   @Column()
   provider: boolean;
 
-  @ManyToOne(() => Adress, adress => adress.user)
+  @ManyToOne(() => Adress, adress => adress.user, { eager: true })
   @JoinColumn({ name: 'adress_id', referencedColumnName: 'id' })
   adress: Adress;
 }
