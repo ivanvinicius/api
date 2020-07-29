@@ -4,10 +4,12 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 
 import Subcategory from '@modules/subcategories/infra/typeorm/entities/Subcategory';
 import Brand from '@modules/brands/infra/typeorm/entities/Brand';
+import ProductMeasure from '@modules/productsMeasures/infra/typeorm/entities/ProductMeasure';
 
 @Entity('products')
 export default class Product {
@@ -35,4 +37,7 @@ export default class Product {
   @ManyToOne(() => Brand, brand => brand.product, { eager: true })
   @JoinColumn({ name: 'brand_id', referencedColumnName: 'id' })
   brand: Brand;
+
+  @OneToMany(() => ProductMeasure, productMeasure => productMeasure.product)
+  productMeasure: ProductMeasure[];
 }

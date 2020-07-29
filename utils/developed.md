@@ -45,7 +45,7 @@ const user = await this.ormRepository
 - Create *** maybetreat numeric informations ***
 - Update *** mayber treat numeric informations ***
 - Delete
-***-list measures by provider with join provider product measure***
+-list measures by provider with join provider product measure
 
 # Compositions
 
