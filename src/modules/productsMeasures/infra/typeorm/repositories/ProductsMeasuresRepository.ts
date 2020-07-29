@@ -28,6 +28,12 @@ export default class ProductsMeasuresRepository
     });
   }
 
+  public async findAllByProvider(
+    provider_id: string,
+  ): Promise<ProductMeasure[] | undefined> {
+    return this.ormRepository.find({ where: { provider_id } });
+  }
+
   public async create(data: ICreateProductMeasureDTO): Promise<ProductMeasure> {
     const productMeasure = await this.ormRepository.create(data);
 

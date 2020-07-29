@@ -10,6 +10,8 @@ export default interface IProductsMeasuresRepository {
     data: IFindProductByProviderDTO,
   ): Promise<ProductMeasure | undefined>;
 
+  findAllByProvider(provider_id: string): Promise<ProductMeasure[] | undefined>;
+
   create(data: ICreateProductMeasureDTO): Promise<ProductMeasure>;
 
   saveUpdate(productMeasure: ProductMeasure): Promise<ProductMeasure>;

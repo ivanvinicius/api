@@ -16,18 +16,20 @@ const user = await this.ormRepository
 - list with join in states
 
 # Users
-- Show Profile with or without join adress
+- middleware ensure authenticated
+- Show Profile with in join adress
 - Create Client
 - Create Provider
-- Create Session
+- Authenticate
 
 # Categories
-*** TODO create a querySelector to select categories and subcategories together  ***
 - list categories
-- list subcategories by category_id
+
+# Subcategories
+- list subcategwories by category_id
 
 # Products
-- list products with join in categories
+- list products with join in subcategories and brands
 
 # Brands
 - list brands
@@ -39,10 +41,18 @@ const user = await this.ormRepository
 - list cultures
 
 # Products_Measures
-
-*** TODO Colorcar joins nas entities  / fazer a listagem de products_measures coma informações relevantes para as compositions ***
-- Create
-- Update
+- middleware ensure is provider
+- Create *** maybetreat numeric informations ***
+- Update *** mayber treat numeric informations ***
 - Delete
+***-list measures by provider with join provider product measure***
 
+# Compositions
+
+TODO
+- ensure is provider
+- Create composition *** How to treat insert with array informations? bulkInsert()? ***
+- Update composition *** How to treat insert with array informations? bulkInsert()? ***
+- Delete by `provider_id` and `culture_id` and `productivity` to make sure you are deleting the right composition
+- List with joins
 
