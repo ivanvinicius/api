@@ -6,7 +6,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import Category from '@modules/categories/infra/typeorm/entities/Category';
+import Subcategory from '@modules/subcategories/infra/typeorm/entities/Subcategory';
 
 @Entity('products')
 export default class Product {
@@ -14,7 +14,7 @@ export default class Product {
   id: string;
 
   @Column('uuid')
-  category_id: string;
+  subcategory_id: string;
 
   @Column()
   name: string;
@@ -22,7 +22,9 @@ export default class Product {
   @Column()
   composition?: string;
 
-  @ManyToOne(() => Category, category => category.product, { eager: true })
-  @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
-  category: Category;
+  @ManyToOne(() => Subcategory, subcategory => subcategory.product, {
+    eager: true,
+  })
+  @JoinColumn({ name: 'subcategory_id', referencedColumnName: 'id' })
+  subcategory: Subcategory;
 }

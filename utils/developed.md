@@ -1,3 +1,14 @@
+const user = await this.ormRepository
+      .createQueryBuilder()
+      .select('user')
+      .from(User, 'user')
+      .innerJoinAndSelect('user.adress', 'adress')
+      .innerJoinAndSelect('adress.state', 'state')
+      .getRawAndEntities()
+
+    return user.entities[0];
+
+
 # States
 - list
 

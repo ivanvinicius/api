@@ -1,7 +1,6 @@
 import { Router } from 'express';
-
-import CategoriesController from '@modules/categories/infra/http/controllers/CategoriesController';
 import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
+import CategoriesController from '../controllers/CategoriesController';
 
 const categoriesRouter = Router();
 const categoriesController = new CategoriesController();

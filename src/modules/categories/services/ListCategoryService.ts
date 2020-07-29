@@ -1,16 +1,16 @@
-import { inject, injectable } from 'tsyringe';
+import { injectable, inject } from 'tsyringe';
 
-import ICategoriesRepository from '@modules/categories/repositories/ICategoriesRepository';
-import Category from '@modules/categories/infra/typeorm/entities/Category';
+import ICategoriesRepository from '../repositories/ICategoriesRepository';
+import Category from '../infra/typeorm/entities/Category';
 
 @injectable()
 export default class ListCategoryService {
   constructor(
     @inject('CategoriesRepository')
-    private categoriesRepository: ICategoriesRepository,
+    private categoriesRepositor: ICategoriesRepository,
   ) {}
 
   public async execute(): Promise<Category[] | undefined> {
-    return this.categoriesRepository.findAllCategories();
+    return this.categoriesRepositor.findAll();
   }
 }

@@ -1,7 +1,5 @@
-import Category from '@modules/categories/infra/typeorm/entities/Category';
+import Category from '../infra/typeorm/entities/Category';
 
 export default interface ICategoriesRepository {
-  findAllCategories(): Promise<Category[] | undefined>;
-
-  findAllByCategory(category_id: string): Promise<Category[] | undefined>;
+  findAll(): Promise<Category[] | undefined>;
 }

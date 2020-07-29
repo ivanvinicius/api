@@ -1,17 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import Product from '@modules/products/infra/typeorm/entities/Product';
+import Subcategory from '@modules/subcategories/infra/typeorm/entities/Subcategory';
 
 @Entity('categories')
 export default class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('uuid')
-  category_id?: string;
-
   @Column()
   name: string;
 
-  @OneToMany(() => Product, product => product.category)
-  product: Product[];
+  @OneToMany(() => Subcategory, subcategory => subcategory.category)
+  subcategory: Subcategory[];
 }
