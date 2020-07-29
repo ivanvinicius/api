@@ -12,9 +12,6 @@ export default class ProductMeasure {
   product_id: string;
 
   @Column('uuid')
-  brand_id: string;
-
-  @Column('uuid')
   measure_id: string;
 
   @Column('numeric')

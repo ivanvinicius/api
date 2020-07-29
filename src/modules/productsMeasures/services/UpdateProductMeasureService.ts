@@ -6,7 +6,6 @@ import ProductMeasure from '../infra/typeorm/entities/ProductMeasure';
 
 interface IRequest {
   id: string;
-  brand_id: string;
   measure_id: string;
   volume: number;
   price: number;
@@ -21,7 +20,6 @@ export default class UpdateProductMeasureService {
 
   public async execute({
     id,
-    brand_id,
     measure_id,
     volume,
     price,
@@ -33,7 +31,6 @@ export default class UpdateProductMeasureService {
     }
 
     Object.assign(productMeasure, {
-      brand_id,
       measure_id,
       volume,
       price,

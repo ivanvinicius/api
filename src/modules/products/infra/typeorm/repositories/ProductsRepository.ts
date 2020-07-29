@@ -11,13 +11,6 @@ export default class ProductsRepository implements IProductsRepository {
   }
 
   public async findAll(): Promise<Product[] | undefined> {
-    return this.ormRepository.find({
-      join: {
-        alias: 'product',
-        innerJoinAndSelect: {
-          category: 'product.category',
-        },
-      },
-    });
+    return this.ormRepository.find();
   }
 }

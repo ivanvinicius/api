@@ -7,7 +7,6 @@ import ProductMeasure from '../infra/typeorm/entities/ProductMeasure';
 interface IRequest {
   provider_id: string;
   product_id: string;
-  brand_id: string;
   measure_id: string;
   volume: number;
   price: number;
@@ -23,7 +22,6 @@ export default class CreateProductMeasureService {
   public async execute({
     provider_id,
     product_id,
-    brand_id,
     measure_id,
     volume,
     price,
@@ -39,7 +37,6 @@ export default class CreateProductMeasureService {
     const productMeasure = await this.productsMeasuresRepository.create({
       provider_id,
       product_id,
-      brand_id,
       measure_id,
       volume,
       price,

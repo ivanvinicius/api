@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 
 import Subcategory from '@modules/subcategories/infra/typeorm/entities/Subcategory';
+import Brand from '@modules/brands/infra/typeorm/entities/Brand';
 
 @Entity('products')
 export default class Product {
@@ -15,6 +16,9 @@ export default class Product {
 
   @Column('uuid')
   subcategory_id: string;
+
+  @Column('uuid')
+  brand_id: string;
 
   @Column()
   name: string;
@@ -27,4 +31,8 @@ export default class Product {
   })
   @JoinColumn({ name: 'subcategory_id', referencedColumnName: 'id' })
   subcategory: Subcategory;
+
+  @ManyToOne(() => Brand, brand => brand.product, { eager: true })
+  @JoinColumn({ name: 'brand_id', referencedColumnName: 'id' })
+  brand: Brand;
 }

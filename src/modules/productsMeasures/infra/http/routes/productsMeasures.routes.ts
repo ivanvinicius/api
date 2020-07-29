@@ -16,7 +16,6 @@ productsMeasuresRouter.post(
   celebrate({
     [Segments.BODY]: {
       product_id: Joi.string().required(),
-      brand_id: Joi.string().required(),
       measure_id: Joi.string().required(),
       volume: Joi.number().required(),
       price: Joi.number().required(),
@@ -30,7 +29,6 @@ productsMeasuresRouter.patch(
   celebrate({
     [Segments.BODY]: {
       id: Joi.string().required(),
-      brand_id: Joi.string().required(),
       measure_id: Joi.string().required(),
       volume: Joi.number().required(),
       price: Joi.number().required(),

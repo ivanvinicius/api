@@ -8,14 +8,13 @@ import DeleteProductMeasureService from '@modules/productsMeasures/services/Dele
 export default class ProductsMeasuresController {
   public async create(request: Request, response: Response): Promise<Response> {
     const provider_id = request.user.id;
-    const { product_id, brand_id, measure_id, volume, price } = request.body;
+    const { product_id, measure_id, volume, price } = request.body;
 
     const createProductMeasure = container.resolve(CreateProductMeasureService);
 
     const productMeasure = await createProductMeasure.execute({
       provider_id,
       product_id,
-      brand_id,
       measure_id,
       volume,
       price,
@@ -25,13 +24,12 @@ export default class ProductsMeasuresController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { id, brand_id, measure_id, volume, price } = request.body;
+    const { id, measure_id, volume, price } = request.body;
 
     const updateProductMeasure = container.resolve(UpdateProductMeasureService);
 
     const productMeasure = await updateProductMeasure.execute({
       id,
-      brand_id,
       measure_id,
       volume,
       price,

@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+
+import Product from '@modules/products/infra/typeorm/entities/Product';
 
 @Entity('brands')
 export default class Brand {
@@ -7,4 +9,7 @@ export default class Brand {
 
   @Column()
   name: string;
+
+  @OneToMany(() => Product, product => product.brand)
+  product: Product[];
 }

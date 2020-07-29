@@ -51,6 +51,7 @@ CREATE TABLE public.subcategories (
 CREATE TABLE public.products (
   id uuid DEFAULT uuid_generate_v4 (),
   subcategory_id uuid NOT NULL,
+  brand_id uuid NOT NULL,
   name VARCHAR NOT NULL,
   composition VARCHAR,
   CONSTRAINT pk_products PRIMARY KEY (id)
@@ -90,7 +91,6 @@ CREATE TABLE public.products_measures (
   id uuid DEFAULT uuid_generate_v4 (),
   provider_id uuid NOT NULL,
   product_id uuid NOT NULL,
-  brand_id uuid NOT NULL,
   measure_id uuid NOT NULL,
   volume NUMERIC(10,2) NOT NULL,
   price NUMERIC(10,2) NOT NULL,
@@ -160,7 +160,7 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.products_measures ADD CONSTRAINT brands_products_measures_fk
+ALTER TABLE public.products ADD CONSTRAINT brands_products_fk
 FOREIGN KEY (brand_id)
 REFERENCES public.brands (id)
 ON DELETE NO ACTION
