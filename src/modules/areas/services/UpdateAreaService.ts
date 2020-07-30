@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-// import AppError from '@shared/errors/AppError';
+import AppError from '@shared/errors/AppError';
 import IAreasRepository from '../repositories/IAreasRepository';
 import Area from '../infra/typeorm/entities/Area';
 
@@ -25,5 +25,23 @@ export default class UpdateAreaService {
     measure_id,
     name,
     size,
-  }: IRequest): Promise<Area> {}
+  }: IRequest): Promise<Area> {
+    const area = await this.areasRepository.findById(id);
+
+    if (!area) {
+      throw new AppError('Area does not exists.');
+    }
+
+    const findAreaWithSameName = await this.areasRepository.findAreaByUserAndName(
+      { user_id, name },
+    );
+
+    if (findAreaWithSameName?.id !== area.id) {
+      throw new AppError("This 'area name' is already used.");
+    }
+
+    Object.assign(area, { measure_id, name, size });
+
+    return this.areasRepository.update(area);
+  }
 }

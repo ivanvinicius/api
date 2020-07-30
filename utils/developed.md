@@ -1,14 +1,3 @@
-const user = await this.ormRepository
-      .createQueryBuilder()
-      .select('user')
-      .from(User, 'user')
-      .innerJoinAndSelect('user.adress', 'adress')
-      .innerJoinAndSelect('adress.state', 'state')
-      .getRawAndEntities()
-
-    return user.entities[0];
-
-
 # States
 - list
 
@@ -49,13 +38,10 @@ const user = await this.ormRepository
 
 
 # Areas
-TODO
 - index all by user_id
-- Create
-- Update
+- Create (verifying duplicated names for the same user ) *** maybe treat numeric informations ***
+- Update (verifying duplicated names for the same user ) *** maybe treat numeric informations ***
 - Delete
-
-
 
 
 # Compositions
