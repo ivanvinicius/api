@@ -20,6 +20,14 @@ export default class DeleteProductMeasureService {
       throw new AppError('Product measure does not exists.');
     }
 
-    return this.productsMeasuresRepository.delete(id);
+    const deletedProductMeasure = await this.productsMeasuresRepository.delete(
+      id,
+    );
+
+    if (deletedProductMeasure.affected === 0) {
+      throw new AppError('Unable to delete this item.');
+    }
+
+    return deletedProductMeasure;
   }
 }

@@ -44,10 +44,33 @@
 - Delete
 
 
+# Seasons
+
+TODO
+- index all By user_id
+- create (
+  - name gonna be create using year from `startOn` and `endOn` (2015/2016) "getYear"
+  - verify duplicated names for the same user
+  - verify if startOn is not less than endOn `on the past season`
+  - verify is startOn is not equal than endOn by `month`
+  - verify if endOn is not less than startOn for the `current season`
+)
+- update (
+  - findById
+  - Are the same rules like in create method
+)
+- Delete
+
+
+
 # Compositions
+
 TODO
 - ensure is provider
 - Create composition *** How to treat insert with array informations? bulkInsert()? ***
 - Update composition *** How to treat insert with array informations? bulkInsert()? ***
 - Delete by `provider_id` and `culture_id` and `productivity` to make sure you are deleting the right composition
 - List with joins
+
+
+Fazer try catch nos métodos delete pra evita erro de foreign key (implemented areas, productMeasure, season)

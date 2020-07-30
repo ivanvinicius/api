@@ -81,8 +81,8 @@ CREATE TABLE public.seasons (
   id uuid DEFAULT uuid_generate_v4 (),
   user_id uuid NOT NULL,
   name VARCHAR NOT NULL,
-  initiate DATE NOT NULL,
-  terminate DATE NOT NULL,
+  start_on DATE NOT NULL,
+  end_on DATE NOT NULL,
   CONSTRAINT pk_seasons PRIMARY KEY (id, user_id)
 );
 

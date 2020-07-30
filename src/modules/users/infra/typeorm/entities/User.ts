@@ -11,6 +11,7 @@ import { Exclude } from 'class-transformer';
 import Adress from '@modules/adresses/infra/typeorm/entities/Adress';
 import ProductMeasure from '@modules/productsMeasures/infra/typeorm/entities/ProductMeasure';
 import Area from '@modules/areas/infra/typeorm/entities/Area';
+import Season from '@modules/seasons/infra/typeorm/entities/Season';
 
 @Entity('users')
 export default class User {
@@ -42,4 +43,7 @@ export default class User {
 
   @OneToMany(() => Area, area => area.user)
   area: Area[];
+
+  @OneToMany(() => Season, season => season.user)
+  season: Season[];
 }

@@ -35,6 +35,9 @@ import SubcategoriesRepository from '@modules/subcategories/infra/typeorm/reposi
 import IAreasRepository from '@modules/areas/repositories/IAreasRepository';
 import AreasRepository from '@modules/areas/infra/typeorm/repositories/AreasRepository';
 
+import ISeasonsRepository from '@modules/seasons/repositories/ISeasonsRepository';
+import SeasonsRepository from '@modules/seasons/infra/typeorm/repositories/SeasonsRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -88,4 +91,9 @@ container.registerSingleton<IProductsMeasuresRepository>(
 container.registerSingleton<IAreasRepository>(
   'AreasRepository',
   AreasRepository,
+);
+
+container.registerSingleton<ISeasonsRepository>(
+  'SeasonsRepository',
+  SeasonsRepository,
 );

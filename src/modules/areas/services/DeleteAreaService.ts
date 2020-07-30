@@ -18,6 +18,12 @@ export default class DeleteAreaService {
       throw new AppError('Area does not exists.');
     }
 
-    return this.areasRepository.delete(id);
+    const deletedArea = await this.areasRepository.delete(id);
+
+    if (deletedArea.affected === 0) {
+      throw new AppError('Unable to delete this item.');
+    }
+
+    return deletedArea;
   }
 }

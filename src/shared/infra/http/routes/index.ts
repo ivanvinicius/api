@@ -15,6 +15,7 @@ import measuresRouter from '@modules/measures/infra/http/routes/measures.routes'
 import culturesRouter from '@modules/cultures/infra/http/routes/cultures.routes';
 import productsMeasuresRouter from '@modules/productsMeasures/infra/http/routes/productsMeasures.routes';
 import areasRouter from '@modules/areas/infra/http/routes/areas.routes';
+import seasonsRouter from '@modules/seasons/infra/http/routes/seasons.routes';
 
 const routes = Router();
 
@@ -33,5 +34,6 @@ routes.use('/measures', measuresRouter);
 routes.use('/cultures', culturesRouter);
 routes.use('/productsMeasures', productsMeasuresRouter);
 routes.use('/areas', areasRouter);
+routes.use('/seasons', seasonsRouter);
 
 export default routes;
