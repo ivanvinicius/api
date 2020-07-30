@@ -3,7 +3,7 @@ import { Repository, getRepository } from 'typeorm';
 import IProductsMeasuresRepository from '@modules/productsMeasures/repositories/IProductsMeasuresRepository';
 import ICreateProductMeasureDTO from '@modules/productsMeasures/dtos/ICreateProductMeasureDTO';
 import IFindProductByProviderDTO from '@modules/productsMeasures/dtos/IFindProductByProviderDTO';
-import IDeleteProductMeasureResultDTO from '@modules/productsMeasures/dtos/IDeleteProductMeasureResultDTO';
+import IDeleteDTO from '@shared/dtos/IDeleteDTO';
 
 import ProductMeasure from '../entities/ProductMeasure';
 
@@ -48,7 +48,7 @@ export default class ProductsMeasuresRepository
     return this.ormRepository.save(productMeasure);
   }
 
-  public async delete(id: string): Promise<IDeleteProductMeasureResultDTO> {
+  public async delete(id: string): Promise<IDeleteDTO> {
     return this.ormRepository.delete(id);
   }
 }

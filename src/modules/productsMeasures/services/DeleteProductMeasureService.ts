@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import IDeleteProductMeasureResultDTO from '../dtos/IDeleteProductMeasureResultDTO';
+import IDeleteDTO from '@shared/dtos/IDeleteDTO';
 import IProductsMeasuresRepository from '../repositories/IProductsMeasuresRepository';
 
 @injectable()
@@ -11,10 +11,12 @@ export default class DeleteProductMeasureService {
     private productsMeasuresRepository: IProductsMeasuresRepository,
   ) {}
 
-  public async execute(id: string): Promise<IDeleteProductMeasureResultDTO> {
-    const productMeasure = await this.productsMeasuresRepository.findById(id);
+  public async execute(id: string): Promise<IDeleteDTO> {
+    const checkProductMeasure = await this.productsMeasuresRepository.findById(
+      id,
+    );
 
-    if (!productMeasure) {
+    if (!checkProductMeasure) {
       throw new AppError('Product measure does not exists.');
     }
 

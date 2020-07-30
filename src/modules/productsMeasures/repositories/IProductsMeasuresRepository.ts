@@ -1,7 +1,7 @@
+import IDeleteDTO from '@shared/dtos/IDeleteDTO';
 import ProductMeasure from '../infra/typeorm/entities/ProductMeasure';
 import ICreateProductMeasureDTO from '../dtos/ICreateProductMeasureDTO';
 import IFindProductByProviderDTO from '../dtos/IFindProductByProviderDTO';
-import IDeleteProductMeasureResultDTO from '../dtos/IDeleteProductMeasureResultDTO';
 
 export default interface IProductsMeasuresRepository {
   findById(id: string): Promise<ProductMeasure | undefined>;
@@ -16,5 +16,5 @@ export default interface IProductsMeasuresRepository {
 
   saveUpdate(productMeasure: ProductMeasure): Promise<ProductMeasure>;
 
-  delete(id: string): Promise<IDeleteProductMeasureResultDTO>;
+  delete(id: string): Promise<IDeleteDTO>;
 }

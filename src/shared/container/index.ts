@@ -25,10 +25,15 @@ import MeasuresRepository from '@modules/measures/infra/typeorm/repositories/Mea
 
 import ICulturesRepository from '@modules/cultures/repositories/ICulturesRepository';
 import CulturesRepository from '@modules/cultures/infra/typeorm/repositories/CulturesRepository';
+
 import IProductsMeasuresRepository from '@modules/productsMeasures/repositories/IProductsMeasuresRepository';
 import ProductsMeasuresRepository from '@modules/productsMeasures/infra/typeorm/repositories/ProductsMeasuresRepository';
+
 import ISubcategoriesRepository from '@modules/subcategories/repositories/ISubcategoriesRepository';
 import SubcategoriesRepository from '@modules/subcategories/infra/typeorm/repositories/SubcategoriesRepository';
+
+import IAreasRepository from '@modules/areas/repositories/IAreasRepository';
+import AreasRepository from '@modules/areas/infra/typeorm/repositories/AreasRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -78,4 +83,9 @@ container.registerSingleton<ICulturesRepository>(
 container.registerSingleton<IProductsMeasuresRepository>(
   'ProductsMeasuresRepository',
   ProductsMeasuresRepository,
+);
+
+container.registerSingleton<IAreasRepository>(
+  'AreasRepository',
+  AreasRepository,
 );

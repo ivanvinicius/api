@@ -112,7 +112,7 @@ CREATE TABLE public.compositions (
 CREATE TABLE public.areas (
   id uuid DEFAULT uuid_generate_v4 (),
   user_id uuid NOT NULL,
-  measures_id uuid NOT NULL,
+  measure_id uuid NOT NULL,
   name VARCHAR NOT NULL,
   size NUMERIC(10,2) NOT NULL,
   CONSTRAINT pk_areas PRIMARY KEY (id)

@@ -47,12 +47,21 @@ const user = await this.ormRepository
 - Delete
 -list measures by provider with join provider product measure
 
-# Compositions
 
+# Areas
+TODO
+- index all by user_id
+- Create
+- Update
+- Delete
+
+
+
+
+# Compositions
 TODO
 - ensure is provider
 - Create composition *** How to treat insert with array informations? bulkInsert()? ***
 - Update composition *** How to treat insert with array informations? bulkInsert()? ***
 - Delete by `provider_id` and `culture_id` and `productivity` to make sure you are deleting the right composition
 - List with joins
-
