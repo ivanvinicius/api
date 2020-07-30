@@ -16,7 +16,6 @@ A back-end API built-in Typescript, using some concepts of Domain-Driven Design 
 6. To run the project run the command `$ yarn dev:server`.
 
 #### Obs.:
-
 1. This project going to be integrated with `web` and `mobile` version in the future.
 2. Typeorm `migrations` and `seeds` were not created in this project.
 
