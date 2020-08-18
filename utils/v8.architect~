@@ -10,16 +10,16 @@
  <source-databases>
  </source-databases>
  <target-database id="ppdb" dbcs-ref="DS0">
-  <table id="TAB1" populated="true" UUID="cd6ae2ca-b9b6-43ae-af07-2442e049cbcc" name="adresses" objectType="TABLE" physicalName="adresses" >
+  <table id="TAB1" populated="true" UUID="cd6ae2ca-b9b6-43ae-af07-2442e049cbcc" name="cities" objectType="TABLE" physicalName="cities" >
    <remarks></remarks>
    <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL2" populated="true" UUID="cf8477e8-a8c1-40e2-8c68-7f46b5518702" autoIncrement="false" autoIncrementSequenceName="adresses_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="4" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL2" populated="true" UUID="cf8477e8-a8c1-40e2-8c68-7f46b5518702" autoIncrement="false" autoIncrementSequenceName="cities_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="4" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL3" populated="true" UUID="131b43f4-2f14-4191-9ee4-e16e87710fee" autoIncrement="false" autoIncrementSequenceName="adresses_state_id_seq" defaultValue="" name="state_id" nullable="0" physicalName="state_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL3" populated="true" UUID="131b43f4-2f14-4191-9ee4-e16e87710fee" autoIncrement="false" autoIncrementSequenceName="cities_state_id_seq" defaultValue="" name="state_id" nullable="0" physicalName="state_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL4" populated="true" UUID="4f13be86-3c2b-42be-aef3-b3863684abc0" autoIncrement="false" autoIncrementSequenceName="adresses_city_seq" defaultValue="" name="city" nullable="0" physicalName="city" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL4" populated="true" UUID="4f13be86-3c2b-42be-aef3-b3863684abc0" autoIncrement="false" autoIncrementSequenceName="cities_name_seq" defaultValue="" name="name" nullable="0" physicalName="name" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     </folder>
@@ -28,7 +28,7 @@
     <folder id="FOLTAB12" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB14" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX5" populated="true" UUID="e3b01f84-d5df-4262-8473-f6bee8b60606" clustered="false" name="pk_adresses" physicalName="pk_adresses" primaryKeyIndex="true" unique="false" >
+    <index id="IDX5" populated="true" UUID="e3b01f84-d5df-4262-8473-f6bee8b60606" clustered="false" name="pk_cities" physicalName="pk_adresses" primaryKeyIndex="true" unique="false" >
      <index-column id="IDC6" populated="true" UUID="f10149c9-b716-44ce-ab3e-7e11fcd2dd6f" ascendingOrDescending="UNSPECIFIED" column-ref="COL2" name="id" physicalName="id" />
     </index>
    </folder>
@@ -39,7 +39,7 @@
     <column id="COL8" populated="true" UUID="5be8c20a-5828-4935-9292-9d5ae449e07d" autoIncrement="false" autoIncrementSequenceName="users_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="3" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL9" populated="true" UUID="9355caa2-e72c-476f-8d6d-70e6a710dc7d" autoIncrement="false" autoIncrementSequenceName="users_adress_id_seq" defaultValue="" name="adress_id" nullable="1" physicalName="adress_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL9" populated="true" UUID="9355caa2-e72c-476f-8d6d-70e6a710dc7d" autoIncrement="false" autoIncrementSequenceName="users_city_id_seq" defaultValue="" name="city_id" nullable="1" physicalName="city_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL10" populated="true" UUID="0ec5b0ab-9a73-4512-ae66-1db9cd77f75d" autoIncrement="false" autoIncrementSequenceName="users_name_seq" defaultValue="" name="name" nullable="0" physicalName="name" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >

@@ -1,12 +1,12 @@
 # States
 - list
 
-# Adress
+# cities
 - list with join in states
 
 # Users
 - middleware ensure authenticated
-- Show Profile with in join adress
+- Show Profile with in join city
 - Create Client
 - Create Provider
 - Authenticate

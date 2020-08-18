@@ -58,17 +58,17 @@ CREATE TABLE public.products (
 );
 
 
-CREATE TABLE public.adresses (
+CREATE TABLE public.cities (
   id uuid DEFAULT uuid_generate_v4 (),
   state_id uuid NOT NULL,
-  city VARCHAR NOT NULL,
-  CONSTRAINT pk_adresses PRIMARY KEY (id)
+  name VARCHAR NOT NULL,
+  CONSTRAINT pk_cities PRIMARY KEY (id)
 );
 
 
 CREATE TABLE public.users (
   id uuid DEFAULT uuid_generate_v4 (),
-  adress_id uuid,
+  city_id uuid,
   name VARCHAR NOT NULL,
   email VARCHAR NOT NULL,
   password VARCHAR NOT NULL,
@@ -132,7 +132,16 @@ CREATE TABLE public.budgets (
 );
 
 
-ALTER TABLE public.adresses ADD CONSTRAINT state_adress_fk
+
+
+
+
+
+
+
+
+
+ALTER TABLE public.cities ADD CONSTRAINT state_adress_fk
 FOREIGN KEY (state_id)
 REFERENCES public.states (id)
 ON DELETE NO ACTION
@@ -147,7 +156,7 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.areas ADD CONSTRAINT measures_areas_fk
-FOREIGN KEY (measures_id)
+FOREIGN KEY (measure_id)
 REFERENCES public.measures (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
@@ -188,9 +197,9 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.users ADD CONSTRAINT adresses_users_fk
-FOREIGN KEY (adress_id)
-REFERENCES public.adresses (id)
+ALTER TABLE public.users ADD CONSTRAINT cities_users_fk
+FOREIGN KEY (city_id)
+REFERENCES public.cities (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;

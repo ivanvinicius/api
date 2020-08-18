@@ -24,8 +24,8 @@ export default class UsersRepository implements IUsersRepository {
       .createQueryBuilder()
       .select('user')
       .from(User, 'user')
-      .innerJoinAndSelect('user.adress', 'adress')
-      .innerJoinAndSelect('adress.state', 'state')
+      .innerJoinAndSelect('user.city', 'city')
+      .innerJoinAndSelect('city.state', 'state')
       .where({ id })
       .getOne();
 

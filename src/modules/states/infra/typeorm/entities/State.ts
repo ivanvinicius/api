@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
-import Adress from '@modules/adresses/infra/typeorm/entities/Adress';
+import City from '@modules/cities/infra/typeorm/entities/City';
 
 @Entity('states')
 export default class State {
@@ -12,6 +12,6 @@ export default class State {
   @Column()
   name: string;
 
-  @OneToMany(() => Adress, adress => adress.state)
-  adress: Adress[];
+  @OneToMany(() => City, city => city.state)
+  city: City[];
 }

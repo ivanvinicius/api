@@ -8,8 +8,8 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepo
 import IStatesRepository from '@modules/states/repositories/IStatesRepository';
 import StatesRepository from '@modules/states/infra/typeorm/repositories/StatesRepository';
 
-import IAdressesRepository from '@modules/adresses/repositories/IAdressesRepository';
-import AdressesRepository from '@modules/adresses/infra/typeorm/repositories/AdressesRepository';
+import ICitiesRepository from '@modules/cities/repositories/ICitiesRepository';
+import CitiesRepository from '@modules/cities/infra/typeorm/repositories/CitiesRepository';
 
 import CategoriesRepository from '@modules/categories/infra/typeorm/repositories/CategoriesRepository';
 import ICategoriesRepository from '@modules/categories/repositories/ICategoriesRepository';
@@ -48,9 +48,9 @@ container.registerSingleton<IStatesRepository>(
   StatesRepository,
 );
 
-container.registerSingleton<IAdressesRepository>(
-  'AdressesRepository',
-  AdressesRepository,
+container.registerSingleton<ICitiesRepository>(
+  'CitiesRepository',
+  CitiesRepository,
 );
 
 container.registerSingleton<ICategoriesRepository>(

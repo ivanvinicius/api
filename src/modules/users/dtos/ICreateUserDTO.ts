@@ -1,5 +1,5 @@
 export default interface ICreateUserDTO {
-  adress_id?: string;
+  city_id?: string;
   name: string;
   email: string;
   password: string;

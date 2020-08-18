@@ -10,21 +10,21 @@ import {
 import State from '@modules/states/infra/typeorm/entities/State';
 import User from '@modules/users/infra/typeorm/entities/User';
 
-@Entity('adresses')
-export default class Adresses {
+@Entity('cities')
+export default class City {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column('uuid')
   state_id: string;
 
-  @OneToMany(() => User, user => user.adress)
+  @OneToMany(() => User, user => user.city)
   user: User[];
 
   @Column()
-  city: string;
+  name: string;
 
-  @ManyToOne(() => State, state => state.adress, { eager: true })
+  @ManyToOne(() => State, state => state.city, { eager: true })
   @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
   state: State;
 }

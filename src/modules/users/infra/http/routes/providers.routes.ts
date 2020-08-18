@@ -11,7 +11,7 @@ providersRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      adress_id: Joi.string().uuid().required(),
+      city_id: Joi.string().uuid().required(),
       name: Joi.string().required(),
       email: Joi.string().email().required(),
       password: Joi.string().required(),

@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
-import Adress from '@modules/adresses/infra/typeorm/entities/Adress';
+import City from '@modules/cities/infra/typeorm/entities/City';
 import ProductMeasure from '@modules/productsMeasures/infra/typeorm/entities/ProductMeasure';
 import Area from '@modules/areas/infra/typeorm/entities/Area';
 import Season from '@modules/seasons/infra/typeorm/entities/Season';
@@ -19,7 +19,7 @@ export default class User {
   id: string;
 
   @Column('uuid')
-  adress_id?: string;
+  city_id?: string;
 
   @Column()
   name: string;
@@ -34,9 +34,9 @@ export default class User {
   @Column()
   provider: boolean;
 
-  @ManyToOne(() => Adress, adress => adress.user, { eager: true })
-  @JoinColumn({ name: 'adress_id', referencedColumnName: 'id' })
-  adress: Adress;
+  @ManyToOne(() => City, city => city.user, { eager: true })
+  @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
+  city: City;
 
   @OneToMany(() => ProductMeasure, productMeasure => productMeasure.provider)
   productMeasure: ProductMeasure[];
