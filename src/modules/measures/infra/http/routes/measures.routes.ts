@@ -7,6 +7,6 @@ const measuresRouter = Router();
 const measuresController = new MeasuresController();
 
 measuresRouter.use(ensureAuthenticated);
-measuresRouter.get('/', measuresController.index);
+measuresRouter.get('/:type', measuresController.index);
 
 export default measuresRouter;

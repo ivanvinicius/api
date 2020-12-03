@@ -31,16 +31,16 @@
 
 # Products_Measures
 - middleware ensure is provider
-- Create *** maybe treat numeric informations ***
-- Update *** mayber treat numeric informations ***
+- Create
+- Update
 - Delete
 -list measures by provider with join provider product measure
 
 
 # Areas
 - index all by user_id
-- Create (verifying duplicated names for the same user ) *** maybe treat numeric informations ***
-- Update (verifying duplicated names for the same user ) *** maybe treat numeric informations ***
+- Create (verifying duplicated names for the same user )
+- Update (verifying duplicated names for the same user )
 - Delete
 
 
@@ -74,11 +74,9 @@ TODO
 - List with joins
 
 
-Fazer try catch nos métodos delete pra evita erro de foreign key (implemented areas, productMeasure, season)
+TODO
+Be sure that all screens have a right crud (insert, delete, update)
 
 
-select user_id, end_on
-from seasons
-where user_id = 1
-order by end_on desc
-limit 1
+# Products
+list products with out join in products_measures, a way to block duplicate inserts of products on products_measures

@@ -7,8 +7,11 @@ export default class Measure {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('uuid')
+  @Column()
   name: string;
+
+  @Column()
+  type: number;
 
   @OneToMany(() => ProductMeasure, productMeasure => productMeasure.measure)
   productMeasure: ProductMeasure[];

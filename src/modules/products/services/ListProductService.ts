@@ -11,6 +11,6 @@ export default class ListProductService {
   ) {}
 
   public async execute(): Promise<Product[] | undefined> {
-    return this.productsRepository.findAll();
+    return this.productsRepository.findAllAvoidingDuplicates();
   }
 }

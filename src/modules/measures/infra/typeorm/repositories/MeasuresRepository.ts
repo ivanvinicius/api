@@ -10,7 +10,11 @@ export default class MeasuresRepository implements IMeasuresRepository {
     this.ormRepository = getRepository(Measure);
   }
 
-  public async findAll(): Promise<Measure[] | undefined> {
-    return this.ormRepository.find();
+  public async findByType(type: number): Promise<Measure[] | undefined> {
+    return this.ormRepository.find({
+      where: {
+        type,
+      },
+    });
   }
 }

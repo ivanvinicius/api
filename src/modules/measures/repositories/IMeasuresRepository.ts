@@ -1,5 +1,5 @@
 import Measure from '../infra/typeorm/entities/Measure';
 
 export default interface IMeasuresRepository {
-  findAll(): Promise<Measure[] | undefined>;
+  findByType(type: number): Promise<Measure[] | undefined>;
 }

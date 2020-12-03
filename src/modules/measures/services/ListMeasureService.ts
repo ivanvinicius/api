@@ -3,6 +3,10 @@ import { injectable, inject } from 'tsyringe';
 import Measure from '../infra/typeorm/entities/Measure';
 import IMeasuresRepository from '../repositories/IMeasuresRepository';
 
+interface IRequest {
+  type: number;
+}
+
 @injectable()
 export default class ListMeasureService {
   constructor(
@@ -10,7 +14,7 @@ export default class ListMeasureService {
     private measuresRepository: IMeasuresRepository,
   ) {}
 
-  public async execute(): Promise<Measure[] | undefined> {
-    return this.measuresRepository.findAll();
+  public async execute({ type }: IRequest): Promise<Measure[] | undefined> {
+    return this.measuresRepository.findByType(type);
   }
 }

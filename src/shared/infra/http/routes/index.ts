@@ -32,7 +32,7 @@ routes.use('/products', productsRouter);
 routes.use('/brands', brandsRouter);
 routes.use('/measures', measuresRouter);
 routes.use('/cultures', culturesRouter);
-routes.use('/productsMeasures', productsMeasuresRouter);
+routes.use('/products-measures', productsMeasuresRouter);
 routes.use('/areas', areasRouter);
 routes.use('/seasons', seasonsRouter);
 
