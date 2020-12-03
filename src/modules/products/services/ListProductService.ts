@@ -10,7 +10,7 @@ export default class ListProductService {
     private productsRepository: IProductsRepository,
   ) {}
 
-  public async execute(): Promise<Product[] | undefined> {
-    return this.productsRepository.findAllAvoidingDuplicates();
+  public async execute(provider_id: string): Promise<Product[] | undefined> {
+    return this.productsRepository.findAllAvoidingDuplicates(provider_id);
   }
 }
