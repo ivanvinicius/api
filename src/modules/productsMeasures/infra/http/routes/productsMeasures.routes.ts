@@ -21,8 +21,8 @@ productsMeasuresRouter.post(
     [Segments.BODY]: {
       product_id: Joi.string().required(),
       measure_id: Joi.string().required(),
-      volume: Joi.number().required(),
-      price: Joi.number().required(),
+      volume: Joi.string().required(),
+      price: Joi.string().required(),
     },
   }),
   productsMeasuresController.create,
@@ -33,9 +33,10 @@ productsMeasuresRouter.patch(
   celebrate({
     [Segments.BODY]: {
       id: Joi.string().required(),
+      product_id: Joi.string().required(),
       measure_id: Joi.string().required(),
-      volume: Joi.number().required(),
-      price: Joi.number().required(),
+      volume: Joi.string().required(),
+      price: Joi.string().required(),
     },
   }),
   productsMeasuresController.update,

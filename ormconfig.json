@@ -5,7 +5,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "docker",
-  "database": "gobudget",
+  "database": "farmbud",
   "logging": true,
   "entities": [
     "./src/modules/**/infra/typeorm/entities/*.ts"

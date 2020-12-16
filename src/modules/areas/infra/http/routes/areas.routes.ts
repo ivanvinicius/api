@@ -19,7 +19,7 @@ areasRouter.post(
     [Segments.BODY]: {
       measure_id: Joi.string().required(),
       name: Joi.string().required(),
-      size: Joi.number().required(),
+      size: Joi.string().required(),
     },
   }),
   areasController.create,
@@ -32,7 +32,7 @@ areasRouter.patch(
       id: Joi.string().required(),
       measure_id: Joi.string().required(),
       name: Joi.string().required(),
-      size: Joi.number().required(),
+      size: Joi.string().required(),
     },
   }),
   areasController.update,

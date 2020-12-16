@@ -30,7 +30,7 @@ export default class ProductMeasure {
   @Column('numeric')
   price: number;
 
-  @ManyToOne(() => User, provider => provider.productMeasure, { eager: true })
+  @ManyToOne(() => User, provider => provider.productMeasure)
   @JoinColumn({ name: 'provider_id', referencedColumnName: 'id' })
   provider: User;
 
