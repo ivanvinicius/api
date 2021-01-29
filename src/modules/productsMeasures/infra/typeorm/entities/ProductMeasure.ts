@@ -38,7 +38,7 @@ export default class ProductMeasure {
   @JoinColumn({ name: 'product_id', referencedColumnName: 'id' })
   product: Product;
 
-  @ManyToOne(() => Measure, measure => measure.productMeasure, { eager: true })
+  @ManyToOne(() => Measure, measure => measure.productMeasure)
   @JoinColumn({ name: 'measure_id', referencedColumnName: 'id' })
   measure: Measure;
 }
