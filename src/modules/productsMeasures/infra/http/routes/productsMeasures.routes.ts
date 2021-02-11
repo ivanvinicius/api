@@ -43,12 +43,12 @@ productsMeasuresRouter.patch(
 );
 
 productsMeasuresRouter.delete(
-  '/:id',
-  celebrate({
-    [Segments.PARAMS]: {
-      id: Joi.string().required(),
-    },
-  }),
+  '/',
+  // celebrate({
+  //   [Segments.BODY]: {
+  //     ids: Joi.object().required(),
+  //   },
+  // }),
   productsMeasuresController.delete,
 );
 

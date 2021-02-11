@@ -1,4 +1,4 @@
 export default interface IDeleteDTO {
-  raw: string;
+  raw: [];
   affected?: number | null;
 }

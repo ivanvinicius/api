@@ -28,8 +28,6 @@ export default class UsersRepository implements IUsersRepository {
       .innerJoinAndSelect('city.state', 'state')
       .where({ id })
       .getOne();
-
-    // return this.ormRepository.findOne({ where: { id } });
   }
 
   public async create(userData: ICreateUserDTO): Promise<User> {

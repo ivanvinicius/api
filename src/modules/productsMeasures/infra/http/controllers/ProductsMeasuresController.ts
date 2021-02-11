@@ -39,10 +39,12 @@ export default class ProductsMeasuresController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
+    const ids = request.body;
+
     const deleteProductMeasure = container.resolve(DeleteProductMeasureService);
 
-    await deleteProductMeasure.execute(request.params.id);
+    await deleteProductMeasure.execute(ids);
 
-    return response.status(200).json();
+    return response.json();
   }
 }

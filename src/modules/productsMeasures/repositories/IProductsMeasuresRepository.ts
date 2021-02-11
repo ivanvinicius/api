@@ -12,9 +12,11 @@ export default interface IProductsMeasuresRepository {
 
   findAllByProvider(provider_id: string): Promise<ProductMeasure[] | undefined>;
 
+  findAllProductMeasureIds(): Promise<Array<string> | undefined>;
+
   create(data: ICreateProductMeasureDTO): Promise<ProductMeasure>;
 
   saveUpdate(productMeasure: ProductMeasure): Promise<ProductMeasure>;
 
-  delete(id: string): Promise<IDeleteDTO>;
+  delete(ids: Array<string>): Promise<IDeleteDTO>;
 }

@@ -3,7 +3,6 @@ import { Repository, getRepository } from 'typeorm';
 import IProductsMeasuresRepository from '@modules/productsMeasures/repositories/IProductsMeasuresRepository';
 import ICreateProductMeasureDTO from '@modules/productsMeasures/dtos/ICreateProductMeasureDTO';
 import IFindProductByProviderDTO from '@modules/productsMeasures/dtos/IFindProductByProviderDTO';
-// import IFormattedProductsMeasureProps from '@modules/productsMeasures/dtos/IFormattedProductsMeasureProps';
 import IDeleteDTO from '@shared/dtos/IDeleteDTO';
 
 import ProductMeasure from '../entities/ProductMeasure';
@@ -27,6 +26,14 @@ export default class ProductsMeasuresRepository
     return this.ormRepository.findOne({
       where: { product_id, provider_id },
     });
+  }
+
+  public async findAllProductMeasureIds(): Promise<Array<string> | undefined> {
+    const data = await this.ormRepository.find({ select: ['id'] });
+
+    const ids = data.map(({ id }) => id);
+
+    return ids;
   }
 
   public async findAllByProvider(
@@ -72,44 +79,6 @@ export default class ProductsMeasuresRepository
       [provider_id],
     );
 
-    // const formattedProductsMeasures = productsMeasures.map(
-    //   (item: IFormattedProductsMeasureProps) => ({
-    //     id: item.productmeasure_id,
-    //     provider_id: item.productmeasure_provider_id,
-    //     product_id: item.productmeasure_product_id,
-    //     measure_id: item.productmeasure_measure_id,
-    //     volume: item.productmeasure_volume,
-    //     price: item.productmeasure_price,
-    //     product: {
-    //       id: item.productmeasure_product_id,
-    //       subcategory_id: item.productmeasure_product_subcategory_id,
-    //       brand_id: item.productmeasure_product_brand_id,
-    //       name: item.productmeasure_product_name,
-    //       composition: item.productmeasure_product_composition,
-    //       subcategory: {
-    //         id: item.productmeasure_product_subcategory_id,
-    //         name: item.productmeasure_product_subcategory_name,
-    //         category_id: item.productmeasure_product_subcategory_category_id,
-    //         category: {
-    //           id: item.productmeasure_product_subcategory_category_id,
-    //           name: item.productmeasure_product_subcategory_category_name,
-    //         },
-    //       },
-    //       brand: {
-    //         id: item.productmeasure_product_brand_id,
-    //         name: item.productmeasure_product_brand_name,
-    //       },
-    //     },
-    //     measure: {
-    //       id: item.productmeasure_measure_id,
-    //       name: item.productmeasure_measure_name,
-    //       type: item.productmeasure_measure_type,
-    //     },
-    //   }),
-    // );
-
-    // return formattedProductsMeasures;
-
     return productsMeasures;
   }
 
@@ -127,7 +96,12 @@ export default class ProductsMeasuresRepository
     return this.ormRepository.save(productMeasure);
   }
 
-  public async delete(id: string): Promise<IDeleteDTO> {
-    return this.ormRepository.delete(id);
+  public async delete(ids: Array<string>): Promise<IDeleteDTO> {
+    return this.ormRepository
+      .createQueryBuilder()
+      .delete()
+      .from(ProductMeasure)
+      .where('products_measures.id IN(:...ids)', { ids })
+      .execute();
   }
 }

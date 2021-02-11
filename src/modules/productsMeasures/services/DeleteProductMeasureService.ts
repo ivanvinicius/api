@@ -11,23 +11,31 @@ export default class DeleteProductMeasureService {
     private productsMeasuresRepository: IProductsMeasuresRepository,
   ) {}
 
-  public async execute(id: string): Promise<IDeleteDTO> {
-    const checkProductMeasure = await this.productsMeasuresRepository.findById(
-      id,
-    );
+  public async execute(requestIds: Array<string>): Promise<IDeleteDTO> {
+    const repositoryIds = await this.productsMeasuresRepository.findAllProductMeasureIds();
 
-    if (!checkProductMeasure) {
-      throw new AppError('Product measure does not exists.');
+    if (!repositoryIds?.length) {
+      throw new AppError(
+        'Não foi possível encontrar nenhum item com o ID informado!',
+      );
     }
 
-    const deletedProductMeasure = await this.productsMeasuresRepository.delete(
-      id,
+    const includedIds = repositoryIds.filter(item => requestIds.includes(item));
+
+    if (!includedIds?.length) {
+      throw new AppError(
+        'Não foi possível encontrar um item com o ID informado!',
+      );
+    }
+
+    const deleteProductsMeasures = await this.productsMeasuresRepository.delete(
+      includedIds,
     );
 
-    if (deletedProductMeasure.affected === 0) {
+    if (deleteProductsMeasures.affected === 0) {
       throw new AppError('Unable to delete this item.');
     }
 
-    return deletedProductMeasure;
+    return deleteProductsMeasures;
   }
 }

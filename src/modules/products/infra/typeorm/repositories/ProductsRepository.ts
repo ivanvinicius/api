@@ -2,7 +2,6 @@ import { Repository, getRepository } from 'typeorm';
 
 import Product from '@modules/products/infra/typeorm/entities/Product';
 import IProductsRepository from '@modules/products/repositories/IProductsRepository';
-// import IFormattedProductsProps from '@modules/products/dtos/IFormattedProductsProps';
 
 export default class ProductsRepository implements IProductsRepository {
   private ormRepository: Repository<Product>;
@@ -43,26 +42,6 @@ export default class ProductsRepository implements IProductsRepository {
     const products = await this.ormRepository.query(SelectProductsQuery, [
       provider_id,
     ]);
-
-    // const formattedProducts = products.map((item: IFormattedProductsProps) => ({
-    //   id: item.product_id,
-    //   name: item.product_name,
-    //   composition: item.product_composition,
-    //   brand: {
-    //     id: item.brand_id,
-    //     name: item.brand_name,
-    //   },
-    //   subcategory: {
-    //     id: item.subcategory_id,
-    //     name: item.subcategory_name,
-    //     category: {
-    //       id: item.category_id,
-    //       name: item.category_name,
-    //     },
-    //   },
-    // }));
-
-    // return formattedProducts;
 
     return products;
   }
