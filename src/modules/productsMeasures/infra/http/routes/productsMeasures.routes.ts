@@ -44,11 +44,11 @@ productsMeasuresRouter.patch(
 
 productsMeasuresRouter.delete(
   '/',
-  // celebrate({
-  //   [Segments.BODY]: {
-  //     ids: Joi.object().required(),
-  //   },
-  // }),
+  celebrate({
+    [Segments.BODY]: {
+      ids: Joi.array().items(Joi.string()),
+    },
+  }),
   productsMeasuresController.delete,
 );
 
