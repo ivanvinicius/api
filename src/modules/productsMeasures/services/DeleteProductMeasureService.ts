@@ -12,20 +12,20 @@ export default class DeleteProductMeasureService {
   ) {}
 
   public async execute(requestIds: Array<string>): Promise<IDeleteDTO> {
+    if (!requestIds) {
+      throw new AppError('Unable to find an item by informed ID', 400);
+    }
+
     const repositoryIds = await this.productsMeasuresRepository.findAllProductMeasureIds();
 
     if (!repositoryIds?.length) {
-      throw new AppError(
-        'Não foi possível encontrar nenhum item com o ID informado!',
-      );
+      throw new AppError('You do not have any product measure signed', 400);
     }
 
     const includedIds = repositoryIds.filter(item => requestIds.includes(item));
 
     if (!includedIds?.length) {
-      throw new AppError(
-        'Não foi possível encontrar um item com o ID informado!',
-      );
+      throw new AppError('Unable to find an item by informed ID', 400);
     }
 
     const deleteProductsMeasures = await this.productsMeasuresRepository.delete(
@@ -33,7 +33,7 @@ export default class DeleteProductMeasureService {
     );
 
     if (deleteProductsMeasures.affected === 0) {
-      throw new AppError('Unable to delete this item.');
+      throw new AppError('Unable to delete this item.', 400);
     }
 
     return deleteProductsMeasures;

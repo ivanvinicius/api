@@ -26,15 +26,15 @@ export default class CreateSeasonService {
     end_on,
   }: IRequest): Promise<Season> {
     if (differenceInMonths(end_on, start_on) < 1) {
-      throw new AppError('The season must be longer than a month.');
+      throw new AppError('The season must be longer than a month.', 400);
     }
 
     if (differenceInMonths(end_on, start_on) > 12) {
-      throw new AppError('The season can not be longer than a year.');
+      throw new AppError('The season can not be longer than a year.', 400);
     }
 
     if (isBefore(start_on, new Date(Date.now()))) {
-      throw new AppError("The 'start' date must be greater than today.");
+      throw new AppError("The 'start' date must be greater than today.", 400);
     }
 
     const checkSeasonNameExists = await this.seasonsRepository.findSeasonByUserAndName(
@@ -42,7 +42,7 @@ export default class CreateSeasonService {
     );
 
     if (checkSeasonNameExists) {
-      throw new AppError("This season 'name' is already used.");
+      throw new AppError("This season 'name' is already used.", 400);
     }
 
     return this.seasonsRepository.create({ user_id, name, start_on, end_on });

@@ -15,13 +15,13 @@ export default class DeleteAreaService {
     const checkAreaExists = await this.areasRepository.findById(id);
 
     if (!checkAreaExists) {
-      throw new AppError('Area does not exists.');
+      throw new AppError('Area does not exists.', 400);
     }
 
     const deletedArea = await this.areasRepository.delete(id);
 
     if (deletedArea.affected === 0) {
-      throw new AppError('Unable to delete this item.');
+      throw new AppError('Unable to delete this item.', 400);
     }
 
     return deletedArea;

@@ -15,10 +15,10 @@
 - list categories
 
 # Subcategories
-- list subcategwories by category_id
+- list subcategories by category_id
 
 # Products
-- list products with join in subcategories and brands
+ - list products with out join in products_measures, a way to block duplicate inserts of products on products_measures
 
 # Brands
 - list brands
@@ -34,7 +34,7 @@
 - Create
 - Update
 - Delete
--list measures by provider with join provider product measure
+- list measures by provider with join provider product measure
 
 
 # Areas
@@ -44,8 +44,16 @@
 - Delete
 
 
-# Seasons
+# Compositions
+TODO
+- ensure is provider
+- Create composition *** How to treat insert with array information? bulkInsert()? ***
+- Update composition *** How to treat insert with array information? bulkInsert()? ***
+- Delete by `provider_id` and `culture_id` and `productivity` to make sure you are deleting the right composition
+- List with joins
 
+
+# Seasons
 TODO
 - index all By user_id
 - create (
@@ -61,22 +69,3 @@ TODO
   - Are the same rules like in create method
 )
 - Delete
-
-
-
-# Compositions
-
-TODO
-- ensure is provider
-- Create composition *** How to treat insert with array informations? bulkInsert()? ***
-- Update composition *** How to treat insert with array informations? bulkInsert()? ***
-- Delete by `provider_id` and `culture_id` and `productivity` to make sure you are deleting the right composition
-- List with joins
-
-
-TODO
-Be sure that all screens have a right crud (insert, delete, update)
-
-
-# Products
-list products with out join in products_measures, a way to block duplicate inserts of products on products_measures

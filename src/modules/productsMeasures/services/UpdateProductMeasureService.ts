@@ -27,7 +27,7 @@ export default class UpdateProductMeasureService {
     const productMeasure = await this.productsMeasuresRepository.findById(id);
 
     if (!productMeasure) {
-      throw new AppError('Product measure does not exists.');
+      throw new AppError('Product measure does not exists.', 400);
     }
 
     Object.assign(productMeasure, {

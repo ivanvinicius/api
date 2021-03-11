@@ -8,7 +8,7 @@ export default function ensureIsProvider(
 ): void {
   if (!request.user.provider) {
     throw new AppError(
-      'Only providers can create/update/read informations in this area',
+      'Only providers can create/update/read information in this area',
     );
   }
 

@@ -24,7 +24,7 @@ export default class CreateClientService {
     const checkClientExist = await this.usersRepository.findByEmail(email);
 
     if (checkClientExist) {
-      throw new AppError('Email adress already used.');
+      throw new AppError('Email address already used.', 400);
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);

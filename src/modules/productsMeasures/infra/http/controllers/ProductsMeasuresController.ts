@@ -43,8 +43,8 @@ export default class ProductsMeasuresController {
 
     const deleteProductMeasure = container.resolve(DeleteProductMeasureService);
 
-    await deleteProductMeasure.execute(ids);
+    const productMeasure = await deleteProductMeasure.execute(ids);
 
-    return response.json();
+    return response.json(productMeasure);
   }
 }

@@ -29,7 +29,7 @@ export default class UpdateAreaService {
     const area = await this.areasRepository.findById(id);
 
     if (!area) {
-      throw new AppError('Area does not exists.');
+      throw new AppError('Area does not exists.', 400);
     }
 
     const findAreaWithSameName = await this.areasRepository.findAreaByUserAndName(
@@ -37,7 +37,7 @@ export default class UpdateAreaService {
     );
 
     if (findAreaWithSameName?.id !== area.id) {
-      throw new AppError("This 'area name' is already used.");
+      throw new AppError("This 'area name' is already used.", 400);
     }
 
     Object.assign(area, { measure_id, name, size });

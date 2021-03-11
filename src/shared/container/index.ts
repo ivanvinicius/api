@@ -38,6 +38,9 @@ import AreasRepository from '@modules/areas/infra/typeorm/repositories/AreasRepo
 import ISeasonsRepository from '@modules/seasons/repositories/ISeasonsRepository';
 import SeasonsRepository from '@modules/seasons/infra/typeorm/repositories/SeasonsRepository';
 
+import ICompositionsRepository from '@modules/compositions/repositories/ICompositionsRepository';
+import CompositionsRepository from '@modules/compositions/infra/typeorm/repositories/CompositionsRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -96,4 +99,9 @@ container.registerSingleton<IAreasRepository>(
 container.registerSingleton<ISeasonsRepository>(
   'SeasonsRepository',
   SeasonsRepository,
+);
+
+container.registerSingleton<ICompositionsRepository>(
+  'CompositionsRepository',
+  CompositionsRepository,
 );

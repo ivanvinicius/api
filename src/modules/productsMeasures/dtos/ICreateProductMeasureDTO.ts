@@ -2,6 +2,6 @@ export default interface ICreateProductMeasureDTO {
   provider_id: string;
   product_id: string;
   measure_id: string;
-  volume: number;
-  price: number;
+  volume: string;
+  price: string;
 }

@@ -8,8 +8,8 @@ interface IRequest {
   provider_id: string;
   product_id: string;
   measure_id: string;
-  volume: number;
-  price: number;
+  volume: string;
+  price: string;
 }
 
 @injectable()
@@ -31,7 +31,7 @@ export default class CreateProductMeasureService {
     );
 
     if (checkProductMeasureExists) {
-      throw new AppError('This product measure already exists.');
+      throw new AppError('This product measure already exists.', 400);
     }
 
     const productMeasure = await this.productsMeasuresRepository.create({

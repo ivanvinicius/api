@@ -15,7 +15,7 @@ export default class ShowProfileService {
     const userProfile = await this.usersRepository.showProfile(id);
 
     if (!userProfile) {
-      throw new AppError('User does not exists.');
+      throw new AppError('User does not exists.', 400);
     }
 
     return userProfile;
