@@ -15,4 +15,7 @@ A back-end API built-in Typescript, using some concepts of Domain-Driven Design 
 5. Inside this project folder run the command `$ yarn` to download dependencies.
 6. To run the project run the command `$ yarn dev:server`.
 
+
 ##### There's no license for this project yet.
+
+Ivan
