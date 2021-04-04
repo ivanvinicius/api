@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import ListCategoryService from '@modules/categories/services/ListCategoryService';
+import ListCategoriesService from '@modules/categories/services/ListCategoriesService';
 
 export default class CategoriesController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const listCategories = container.resolve(ListCategoryService);
+    const listCategories = container.resolve(ListCategoriesService);
 
     const categories = await listCategories.execute();
 

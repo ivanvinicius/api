@@ -19,26 +19,11 @@ export default class UsersRepository implements IUsersRepository {
     return this.ormRepository.findOne({ where: { email } });
   }
 
-  public async showProfile(id: string): Promise<User | undefined> {
-    return this.ormRepository
-      .createQueryBuilder()
-      .select('user')
-      .from(User, 'user')
-      .innerJoinAndSelect('user.city', 'city')
-      .innerJoinAndSelect('city.state', 'state')
-      .where({ id })
-      .getOne();
-  }
-
   public async create(userData: ICreateUserDTO): Promise<User> {
     const user = this.ormRepository.create(userData);
 
     await this.ormRepository.save(user);
 
     return user;
-  }
-
-  public async saveUpdate(user: User): Promise<User> {
-    return this.ormRepository.save(user);
   }
 }

@@ -1,25 +1,24 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn,
-  OneToMany,
-} from 'typeorm';
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import { v4 as uuid } from 'uuid';
 
-import City from '@modules/cities/infra/typeorm/entities/City';
-import ProductMeasure from '@modules/productsMeasures/infra/typeorm/entities/ProductMeasure';
-import Area from '@modules/areas/infra/typeorm/entities/Area';
-import Season from '@modules/seasons/infra/typeorm/entities/Season';
+import Address from '@modules/addresses/infra/typeorm/entities/Address';
 
 @Entity('users')
 export default class User {
-  @PrimaryGeneratedColumn('uuid')
+  constructor(props: Omit<User, 'id'>, id?: string) {
+    Object.assign(this, props);
+
+    if (!id) {
+      this.id = uuid();
+    }
+  }
+
+  @PrimaryColumn('uuid')
   id: string;
 
   @Column('uuid')
-  city_id?: string;
+  address_id?: string;
 
   @Column()
   name: string;
@@ -34,16 +33,7 @@ export default class User {
   @Column()
   provider: boolean;
 
-  @ManyToOne(() => City, city => city.user, { eager: true })
-  @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
-  city: City;
-
-  @OneToMany(() => ProductMeasure, productMeasure => productMeasure.provider)
-  productMeasure: ProductMeasure[];
-
-  @OneToMany(() => Area, area => area.user)
-  area: Area[];
-
-  @OneToMany(() => Season, season => season.user)
-  season: Season[];
+  @ManyToOne(() => Address, address => address.user)
+  @JoinColumn({ name: 'address_id', referencedColumnName: 'id' })
+  address: Address;
 }

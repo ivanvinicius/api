@@ -1,23 +1,24 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  JoinColumn,
-  OneToMany,
-} from 'typeorm';
+import { Entity, PrimaryColumn, Column, JoinColumn, ManyToOne } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
-import Subcategory from '@modules/subcategories/infra/typeorm/entities/Subcategory';
 import Brand from '@modules/brands/infra/typeorm/entities/Brand';
-import ProductMeasure from '@modules/productsMeasures/infra/typeorm/entities/ProductMeasure';
+import Category from '@modules/categories/infra/typeorm/entities/Category';
 
 @Entity('products')
 export default class Product {
-  @PrimaryGeneratedColumn('uuid')
+  constructor(props: Omit<Product, 'id'>, id?: string) {
+    Object.assign(this, props);
+
+    if (!id) {
+      this.id = uuid();
+    }
+  }
+
+  @PrimaryColumn('uuid')
   id: string;
 
   @Column('uuid')
-  subcategory_id: string;
+  category_id: string;
 
   @Column('uuid')
   brand_id: string;
@@ -28,16 +29,11 @@ export default class Product {
   @Column()
   composition?: string;
 
-  @ManyToOne(() => Subcategory, subcategory => subcategory.product, {
-    eager: true,
-  })
-  @JoinColumn({ name: 'subcategory_id', referencedColumnName: 'id' })
-  subcategory: Subcategory;
+  @ManyToOne(() => Category, category => category.product)
+  @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
+  category: Category;
 
-  @ManyToOne(() => Brand, brand => brand.product, { eager: true })
+  @ManyToOne(() => Brand, brand => brand.product)
   @JoinColumn({ name: 'brand_id', referencedColumnName: 'id' })
   brand: Brand;
-
-  @OneToMany(() => ProductMeasure, productMeasure => productMeasure.product)
-  productMeasure: ProductMeasure[];
 }

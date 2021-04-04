@@ -6,7 +6,7 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
-  city_id: string;
+  address_id: string;
   name: string;
   email: string;
   password: string;
@@ -22,7 +22,7 @@ export default class CreateUserService {
   ) {}
 
   public async execute({
-    city_id,
+    address_id,
     name,
     email,
     password,
@@ -36,7 +36,7 @@ export default class CreateUserService {
     const hashedPassword = await this.hashProvider.generateHash(password);
 
     const provider = await this.usersRepository.create({
-      city_id,
+      address_id,
       name,
       email,
       password: hashedPassword,

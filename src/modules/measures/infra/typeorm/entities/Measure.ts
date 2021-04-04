@@ -1,21 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import ProductMeasure from '@modules/productsMeasures/infra/typeorm/entities/ProductMeasure';
-import Area from '@modules/areas/infra/typeorm/entities/Area';
+import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
 @Entity('measures')
 export default class Measure {
-  @PrimaryGeneratedColumn('uuid')
+  constructor(props: Omit<Measure, 'id'>, id?: string) {
+    Object.assign(this, props);
+
+    if (!id) {
+      this.id = uuid();
+    }
+  }
+
+  @PrimaryColumn('uuid')
   id: string;
 
   @Column()
   name: string;
-
-  @Column()
-  type: number;
-
-  @OneToMany(() => ProductMeasure, productMeasure => productMeasure.measure)
-  productMeasure: ProductMeasure[];
-
-  @OneToMany(() => Area, area => area.measure)
-  area: Area[];
 }

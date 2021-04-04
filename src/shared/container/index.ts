@@ -5,15 +5,6 @@ import '@shared/container/providers';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
-import IStatesRepository from '@modules/states/repositories/IStatesRepository';
-import StatesRepository from '@modules/states/infra/typeorm/repositories/StatesRepository';
-
-import ICitiesRepository from '@modules/cities/repositories/ICitiesRepository';
-import CitiesRepository from '@modules/cities/infra/typeorm/repositories/CitiesRepository';
-
-import CategoriesRepository from '@modules/categories/infra/typeorm/repositories/CategoriesRepository';
-import ICategoriesRepository from '@modules/categories/repositories/ICategoriesRepository';
-
 import IProductsRepository from '@modules/products/repositories/IProductsRepository';
 import ProductsRepository from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 
@@ -26,44 +17,18 @@ import MeasuresRepository from '@modules/measures/infra/typeorm/repositories/Mea
 import ICulturesRepository from '@modules/cultures/repositories/ICulturesRepository';
 import CulturesRepository from '@modules/cultures/infra/typeorm/repositories/CulturesRepository';
 
-import IProductsMeasuresRepository from '@modules/productsMeasures/repositories/IProductsMeasuresRepository';
-import ProductsMeasuresRepository from '@modules/productsMeasures/infra/typeorm/repositories/ProductsMeasuresRepository';
-
-import ISubcategoriesRepository from '@modules/subcategories/repositories/ISubcategoriesRepository';
-import SubcategoriesRepository from '@modules/subcategories/infra/typeorm/repositories/SubcategoriesRepository';
-
 import IAreasRepository from '@modules/areas/repositories/IAreasRepository';
 import AreasRepository from '@modules/areas/infra/typeorm/repositories/AreasRepository';
 
-import ISeasonsRepository from '@modules/seasons/repositories/ISeasonsRepository';
-import SeasonsRepository from '@modules/seasons/infra/typeorm/repositories/SeasonsRepository';
+import ICategoriesRepository from '@modules/categories/repositories/ICategoriesRepository';
+import CategoriesRepository from '@modules/categories/infra/typeorm/repositories/CategoriesRepository';
 
-import ICompositionsRepository from '@modules/compositions/repositories/ICompositionsRepository';
-import CompositionsRepository from '@modules/compositions/infra/typeorm/repositories/CompositionsRepository';
+import IAddressesRepository from '@modules/addresses/repositories/IAddressesRepository';
+import AddressesRepository from '@modules/addresses/infra/typeorm/repositories/AddressesRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
-);
-
-container.registerSingleton<IStatesRepository>(
-  'StatesRepository',
-  StatesRepository,
-);
-
-container.registerSingleton<ICitiesRepository>(
-  'CitiesRepository',
-  CitiesRepository,
-);
-
-container.registerSingleton<ICategoriesRepository>(
-  'CategoriesRepository',
-  CategoriesRepository,
-);
-
-container.registerSingleton<ISubcategoriesRepository>(
-  'SubcategoriesRepository',
-  SubcategoriesRepository,
 );
 
 container.registerSingleton<IProductsRepository>(
@@ -86,22 +51,17 @@ container.registerSingleton<ICulturesRepository>(
   CulturesRepository,
 );
 
-container.registerSingleton<IProductsMeasuresRepository>(
-  'ProductsMeasuresRepository',
-  ProductsMeasuresRepository,
-);
-
 container.registerSingleton<IAreasRepository>(
   'AreasRepository',
   AreasRepository,
 );
 
-container.registerSingleton<ISeasonsRepository>(
-  'SeasonsRepository',
-  SeasonsRepository,
+container.registerSingleton<ICategoriesRepository>(
+  'CategoriesRepository',
+  CategoriesRepository,
 );
 
-container.registerSingleton<ICompositionsRepository>(
-  'CompositionsRepository',
-  CompositionsRepository,
+container.registerSingleton<IAddressesRepository>(
+  'AddressesRepository',
+  AddressesRepository,
 );

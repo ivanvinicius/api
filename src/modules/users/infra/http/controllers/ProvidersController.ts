@@ -6,12 +6,12 @@ import CreateProviderService from '@modules/users/services/CreateProviderService
 
 export default class ProvidersController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { city_id, name, email, password } = request.body;
+    const { address_id, name, email, password } = request.body;
 
     const createProvider = container.resolve(CreateProviderService);
 
     const provider = await createProvider.execute({
-      city_id,
+      address_id,
       name,
       email,
       password,

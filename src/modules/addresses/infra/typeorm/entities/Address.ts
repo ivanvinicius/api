@@ -1,4 +1,3 @@
-import Product from '@modules/products/infra/typeorm/entities/Product';
 import {
   Entity,
   Tree,
@@ -11,10 +10,12 @@ import {
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
-@Entity('categories')
+import User from '@modules/users/infra/typeorm/entities/User';
+
+@Entity('addresses')
 @Tree('materialized-path')
-export default class Category {
-  constructor(props: Omit<Category, 'id'>, id?: string) {
+export default class Address {
+  constructor(props: Omit<Address, 'id'>, id?: string) {
     Object.assign(this, props);
 
     if (!id) {
@@ -34,11 +35,11 @@ export default class Category {
   mpath: string;
 
   @TreeChildren({ cascade: true })
-  children: Category[];
+  children: Address[];
 
   @TreeParent()
-  parent: Category;
+  parent: Address;
 
-  @OneToMany(() => Product, product => product.category)
-  product: Product[];
+  @OneToMany(() => User, user => user.address)
+  user: User[];
 }
