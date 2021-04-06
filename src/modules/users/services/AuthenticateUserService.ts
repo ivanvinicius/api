@@ -45,7 +45,7 @@ export default class AuthenticateUserService {
 
     const { secret, expiresIn } = authConfig.jwt;
 
-    const token = sign({ is_provider: user.provider }, secret, {
+    const token = sign({}, secret, {
       subject: user.id,
       expiresIn,
     });

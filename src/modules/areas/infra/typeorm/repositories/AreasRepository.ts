@@ -3,7 +3,7 @@ import { Repository, getRepository, Raw } from 'typeorm';
 import IAreasRepository from '@modules/areas/repositories/IAreasRepository';
 import Area from '@modules/areas/infra/typeorm/entities/Area';
 import ICreateAreaDTO from '@modules/areas/dtos/ICreateAreaDTO';
-import IFindAreaByUserAndNameDTO from '@modules/areas/dtos/ IFindAreaByUserAndNameDTO';
+import IFindUserAreaDTO from '@modules/areas/dtos/IFindUserAreaDTO';
 import IDeleteDTO from '@shared/dtos/IDeleteDTO';
 
 export default class AreasRepository implements IAreasRepository {
@@ -20,7 +20,7 @@ export default class AreasRepository implements IAreasRepository {
   public async findAreaByUserAndName({
     user_id,
     name,
-  }: IFindAreaByUserAndNameDTO): Promise<Area | undefined> {
+  }: IFindUserAreaDTO): Promise<Area | undefined> {
     return this.ormRepository.findOne({
       where: {
         user_id,
@@ -33,16 +33,16 @@ export default class AreasRepository implements IAreasRepository {
     return this.ormRepository.find({ where: { user_id } });
   }
 
-  public async create(areaData: ICreateAreaDTO): Promise<Area> {
-    const area = await this.ormRepository.create(areaData);
+  public async create(data: ICreateAreaDTO): Promise<Area> {
+    const area = this.ormRepository.create(data);
 
     await this.ormRepository.save(area);
 
     return area;
   }
 
-  public async update(areaData: Area): Promise<Area> {
-    return this.ormRepository.save(areaData);
+  public async update(data: Area): Promise<Area> {
+    return this.ormRepository.save(data);
   }
 
   public async delete(id: string): Promise<IDeleteDTO> {

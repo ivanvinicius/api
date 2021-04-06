@@ -84,8 +84,8 @@ CREATE TABLE areas (
   name VARCHAR NOT NULL,
   description VARCHAR,
   size NUMERIC(10,2) NOT NULL,
-  longitude NUMERIC NOT NULL,
   latitude NUMERIC NOT NULL,
+  longitude NUMERIC NOT NULL,
   CONSTRAINT pk_areas PRIMARY KEY (id)
 );
 
@@ -207,22 +207,3 @@ REFERENCES areas (id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
-
-
--- INSERTS
-
-insert into categories (id, parent_id, name, mpath) values (
-  'e5b69bc8-7677-424d-88da-d603a6b38dc2',
-  null,
-  'Fertilizantes',
-  'e5b69bc8-7677-424d-88da-d603a6b38dc2'
-)
-
-insert into categories (id, parent_id, name, mpath) values (
-	'f9e23f62-1d42-4a22-bda0-1c2c549e313a',
-	'e5b69bc8-7677-424d-88da-d603a6b38dc2',
-	'Químico',
-	'e5b69bc8-7677-424d-88da-d603a6b38dc2.f9e23f62-1d42-4a22-bda0-1c2c549e313a'
-)
-
-

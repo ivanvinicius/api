@@ -1,36 +1,40 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  JoinColumn,
-} from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
 import User from '@modules/users/infra/typeorm/entities/User';
-import Measure from '@modules/measures/infra/typeorm/entities/Measure';
 
 @Entity('areas')
 export default class Area {
-  @PrimaryGeneratedColumn('uuid')
+  constructor(props: Omit<User, 'id'>, id?: string) {
+    Object.assign(this, props);
+
+    if (!id) {
+      this.id = uuid();
+    }
+  }
+
+  @PrimaryColumn('uuid')
   id: string;
 
   @Column('uuid')
   user_id: string;
 
-  @Column('uuid')
-  measure_id: string;
-
   @Column()
   name: string;
 
-  @Column('numeric')
+  @Column()
+  description?: string;
+
+  @Column('decimal')
   size: number;
 
-  @ManyToOne(() => User, user => user.area, { eager: true })
+  @Column('numeric')
+  latitude: number;
+
+  @Column('numeric')
+  longitude: number;
+
+  @ManyToOne(() => User, user => user.area)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
-
-  @ManyToOne(() => Measure, measure => measure.area, { eager: true })
-  @JoinColumn({ name: 'measure_id', referencedColumnName: 'id' })
-  measure: Measure;
 }

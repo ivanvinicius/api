@@ -1,8 +1,17 @@
-import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
+} from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { v4 as uuid } from 'uuid';
 
 import Address from '@modules/addresses/infra/typeorm/entities/Address';
+import Area from '@modules/areas/infra/typeorm/entities/Area';
+import Season from '@modules/seasons/infra/typeorm/entities/Season';
 
 @Entity('users')
 export default class User {
@@ -36,4 +45,10 @@ export default class User {
   @ManyToOne(() => Address, address => address.user)
   @JoinColumn({ name: 'address_id', referencedColumnName: 'id' })
   address: Address;
+
+  @OneToMany(() => Area, area => area.user)
+  area: Area[];
+
+  @OneToMany(() => Season, season => season.user)
+  season: Season[];
 }

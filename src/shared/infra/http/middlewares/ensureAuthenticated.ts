@@ -16,8 +16,6 @@ export default function ensureAuthenticated(
   response: Response,
   next: NextFunction,
 ): void {
-  return next();
-
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {

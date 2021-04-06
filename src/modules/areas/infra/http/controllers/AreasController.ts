@@ -1,39 +1,52 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import ListUserAreaService from '@modules/areas/services/ListUserAreaService';
 import CreateAreaService from '@modules/areas/services/CreateAreaService';
 import DeleteAreaService from '@modules/areas/services/DeleteAreaService';
 import UpdateAreaService from '@modules/areas/services/UpdateAreaService';
 
 export default class AreasController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+
+    const listUserAreas = container.resolve(ListUserAreaService);
+
+    const userAreas = await listUserAreas.execute(user_id);
+
+    return response.json(userAreas);
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
-    const { measure_id, name, size } = request.body;
+    const { name, description, size, latitude, longitude } = request.body;
 
     const createArea = container.resolve(CreateAreaService);
 
     const area = await createArea.execute({
       user_id,
-      measure_id,
       name,
+      description,
       size,
+      latitude,
+      longitude,
     });
 
     return response.json(area);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const user_id = request.user.id;
-    const { id, measure_id, name, size } = request.body;
+    const { id, name, description, size, latitude, longitude } = request.body;
 
     const updateArea = container.resolve(UpdateAreaService);
 
     const area = await updateArea.execute({
       id,
-      user_id,
-      measure_id,
       name,
+      description,
       size,
+      latitude,
+      longitude,
     });
 
     return response.json(area);

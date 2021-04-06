@@ -6,9 +6,11 @@ import Area from '../infra/typeorm/entities/Area';
 
 interface IRequest {
   user_id: string;
-  measure_id: string;
   name: string;
+  description?: string;
   size: number;
+  latitude: number;
+  longitude: number;
 }
 
 @injectable()
@@ -20,9 +22,11 @@ export default class CreateAreaService {
 
   public async execute({
     user_id,
-    measure_id,
     name,
+    description,
     size,
+    latitude,
+    longitude,
   }: IRequest): Promise<Area> {
     const checkAreaExists = await this.areasRepository.findAreaByUserAndName({
       user_id,
@@ -30,9 +34,16 @@ export default class CreateAreaService {
     });
 
     if (checkAreaExists) {
-      throw new AppError("This 'area name' is already used.");
+      throw new AppError("This 'area name' is already used.", 400);
     }
 
-    return this.areasRepository.create({ user_id, measure_id, name, size });
+    return this.areasRepository.create({
+      user_id,
+      name,
+      description,
+      size,
+      latitude,
+      longitude,
+    });
   }
 }
