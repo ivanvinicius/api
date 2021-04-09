@@ -1,8 +1,16 @@
-import { Entity, PrimaryColumn, Column, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryColumn,
+  Column,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 import Brand from '@modules/brands/infra/typeorm/entities/Brand';
 import Category from '@modules/categories/infra/typeorm/entities/Category';
+import Portfolio from '@modules/portfolios/infra/typeorm/entities/Portfolio';
 
 @Entity('products')
 export default class Product {
@@ -36,4 +44,7 @@ export default class Product {
   @ManyToOne(() => Brand, brand => brand.product)
   @JoinColumn({ name: 'brand_id', referencedColumnName: 'id' })
   brand: Brand;
+
+  @OneToMany(() => Portfolio, portfolio => portfolio.product)
+  portfolio: Portfolio[];
 }

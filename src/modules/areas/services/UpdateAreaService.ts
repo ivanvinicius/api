@@ -31,7 +31,7 @@ export default class UpdateAreaService {
     const area = await this.areasRepository.findById(id);
 
     if (!area) {
-      throw new AppError('Area does not exists.', 400);
+      throw new AppError('Área informada não existe.', 400);
     }
 
     Object.assign(area, { name, description, size, latitude, longitude });

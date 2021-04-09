@@ -12,6 +12,8 @@ import culturesRouter from '@modules/cultures/infra/http/routes/cultures.routes'
 import categoriesRouter from '@modules/categories/infra/http/routes/categories.routes';
 import areasRouter from '@modules/areas/infra/http/routes/areas.routes';
 import seasonsRouter from '@modules/seasons/infra/http/routes/seasons.routes';
+import portfoliosRouter from '@modules/portfolios/infra/http/routes/portfolios.routes';
+import compositionsRouter from '@modules/portfolios/infra/http/routes/compositions.routes';
 
 const routes = Router();
 
@@ -27,5 +29,7 @@ routes.use('/cultures', culturesRouter);
 routes.use('/areas', areasRouter);
 routes.use('/categories', categoriesRouter);
 routes.use('/seasons', seasonsRouter);
+routes.use('/portfolios', portfoliosRouter);
+routes.use('/compositions', compositionsRouter);
 
 export default routes;

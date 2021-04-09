@@ -29,19 +29,25 @@ export default class UpdateSeasonService {
     const season = await this.seasonsRepository.findById(id);
 
     if (!season) {
-      throw new AppError('The season was not found.', 400);
+      throw new AppError('A temporda informada não foi encontrada.', 400);
     }
 
     if (isBefore(start_at, new Date(Date.now()))) {
-      throw new AppError("The 'start' date must be greater than today.");
+      throw new AppError(
+        'A data de início deve ser maior que a data atual.',
+        400,
+      );
     }
 
     if (differenceInMonths(end_at, start_at) < 1) {
-      throw new AppError('The season must be longer than a month.');
+      throw new AppError(
+        'A temporada não pode conter duração menor que um mês.',
+        400,
+      );
     }
 
     if (differenceInMonths(end_at, start_at) > 12) {
-      throw new AppError('The season can not be longer than a year.');
+      throw new AppError('A temporada não pode ser maior que um ano.', 400);
     }
 
     Object.assign(season, { name, description, start_at, end_at });

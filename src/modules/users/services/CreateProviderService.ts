@@ -30,7 +30,7 @@ export default class CreateUserService {
     const checkProviderExist = await this.usersRepository.findByEmail(email);
 
     if (checkProviderExist) {
-      throw new AppError('Email address already used.', 400);
+      throw new AppError('O E-mail informado já está em uso.', 400);
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);

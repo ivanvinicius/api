@@ -39,6 +39,14 @@ areasRouter.put(
   areasController.update,
 );
 
-areasRouter.delete('/:id', areasController.delete);
+areasRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  areasController.delete,
+);
 
 export default areasRouter;

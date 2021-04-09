@@ -26,25 +26,33 @@ export default class CreateSeasonService {
     start_at,
     end_at,
   }: IRequest): Promise<Season | undefined> {
-    const seasonExists = await this.seasonsRepository.findSeasonByNameAndUser({
-      name,
-      user_id,
-    });
+    const seasonNameExists = await this.seasonsRepository.findSeasonByNameAndUser(
+      {
+        name,
+        user_id,
+      },
+    );
 
-    if (seasonExists) {
-      throw new AppError('The season name was already used by you.', 400);
+    if (seasonNameExists) {
+      throw new AppError('O nome da temporada já está em uso.', 400);
     }
 
     if (isBefore(start_at, new Date(Date.now()))) {
-      throw new AppError("The 'start' date must be greater than today.");
+      throw new AppError(
+        'A data de início deve ser maior que a data atual.',
+        400,
+      );
     }
 
     if (differenceInMonths(end_at, start_at) < 1) {
-      throw new AppError('The season must be longer than a month.');
+      throw new AppError(
+        'A temporada não pode conter duração menor que um mês.',
+        400,
+      );
     }
 
     if (differenceInMonths(end_at, start_at) > 12) {
-      throw new AppError('The season can not be longer than a year.');
+      throw new AppError('A temporada não pode ser maior que um ano.', 400);
     }
 
     const newSeason = await this.seasonsRepository.create({

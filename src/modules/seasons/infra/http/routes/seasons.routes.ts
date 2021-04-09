@@ -37,6 +37,14 @@ seasonsRouter.put(
   seasonsController.update,
 );
 
-seasonsRouter.delete('/:id', seasonsController.delete);
+seasonsRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().required(),
+    },
+  }),
+  seasonsController.delete,
+);
 
 export default seasonsRouter;

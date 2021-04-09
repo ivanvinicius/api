@@ -8,7 +8,6 @@ interface ITokenPayload {
   iat: number;
   exp: number;
   sub: string;
-  is_provider: boolean;
 }
 
 export default function ensureAuthenticated(
@@ -19,7 +18,7 @@ export default function ensureAuthenticated(
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new AppError('JWT Token is missing.', 401);
+    throw new AppError('Está faltando o token JWT.', 401);
   }
 
   const [, token] = authHeader.split(' ');
@@ -27,12 +26,12 @@ export default function ensureAuthenticated(
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
-    const { sub, is_provider } = decoded as ITokenPayload;
+    const { sub } = decoded as ITokenPayload;
 
-    request.user = { id: sub, provider: is_provider };
+    request.user = { id: sub };
 
     return next();
   } catch (err) {
-    throw new AppError('Invalid JWT Token', 401);
+    throw new AppError('Token JWT inválido.', 401);
   }
 }

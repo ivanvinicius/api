@@ -1,4 +1,3 @@
-import Product from '@modules/products/infra/typeorm/entities/Product';
 import {
   Entity,
   Tree,
@@ -10,6 +9,8 @@ import {
   OneToMany,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+
+import Product from '@modules/products/infra/typeorm/entities/Product';
 
 @Entity('categories')
 @Tree('materialized-path')
@@ -31,13 +32,13 @@ export default class Category {
   @TreeLevelColumn()
   parent_id: string;
 
-  mpath: string;
-
   @TreeChildren({ cascade: true })
   children: Category[];
 
   @TreeParent()
   parent: Category;
+
+  mpath: string;
 
   @OneToMany(() => Product, product => product.category)
   product: Product[];

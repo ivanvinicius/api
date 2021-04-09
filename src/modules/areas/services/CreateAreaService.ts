@@ -34,7 +34,7 @@ export default class CreateAreaService {
     });
 
     if (checkAreaExists) {
-      throw new AppError("This 'area name' is already used.", 400);
+      throw new AppError('O nome de área informado já está em uso', 400);
     }
 
     return this.areasRepository.create({

@@ -1,5 +1,7 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+
+import Portfolio from '@modules/portfolios/infra/typeorm/entities/Portfolio';
 
 @Entity('measures')
 export default class Measure {
@@ -16,4 +18,7 @@ export default class Measure {
 
   @Column()
   name: string;
+
+  @OneToMany(() => Portfolio, portfolio => portfolio.measure)
+  portfolio: Portfolio[];
 }

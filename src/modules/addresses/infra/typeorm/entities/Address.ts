@@ -32,13 +32,13 @@ export default class Address {
   @TreeLevelColumn()
   parent_id: string;
 
-  mpath: string;
-
   @TreeChildren({ cascade: true })
   children: Address[];
 
   @TreeParent()
   parent: Address;
+
+  mpath: string;
 
   @OneToMany(() => User, user => user.address)
   user: User[];

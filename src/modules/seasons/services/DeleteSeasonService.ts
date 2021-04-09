@@ -15,13 +15,13 @@ export default class DeleteSeasonService {
     const checkSeasonsExists = await this.seasonsRepository.findById(id);
 
     if (!checkSeasonsExists) {
-      throw new AppError('Seasons does not exists.');
+      throw new AppError('A temporada informada não existe', 400);
     }
 
     const deletedSeason = await this.seasonsRepository.delete(id);
 
     if (deletedSeason.affected === 0) {
-      throw new AppError('Unable to delete this item.');
+      throw new AppError('Impossível deletar o item.', 400);
     }
 
     return deletedSeason;

@@ -12,6 +12,7 @@ import { v4 as uuid } from 'uuid';
 import Address from '@modules/addresses/infra/typeorm/entities/Address';
 import Area from '@modules/areas/infra/typeorm/entities/Area';
 import Season from '@modules/seasons/infra/typeorm/entities/Season';
+import Portfolio from '@modules/portfolios/infra/typeorm/entities/Portfolio';
 
 @Entity('users')
 export default class User {
@@ -51,4 +52,7 @@ export default class User {
 
   @OneToMany(() => Season, season => season.user)
   season: Season[];
+
+  @OneToMany(() => Portfolio, portfolio => portfolio.user)
+  portfolio: Portfolio[];
 }
