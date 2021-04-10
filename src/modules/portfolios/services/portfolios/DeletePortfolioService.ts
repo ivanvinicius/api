@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import IDeleteDTO from '@shared/dtos/IDeleteDTO';
 import AppError from '@shared/errors/AppError';
-import IPortfoliosRepository from '../repositories/IPortfoliosRepository';
+import IPortfoliosRepository from '../../repositories/IPortfoliosRepository';
 
 @injectable()
 export default class DeletePortfolioService {

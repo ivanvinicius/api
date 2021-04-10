@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import ListPortfolioService from '@modules/portfolios/services/ListPortfolioService';
-import CreatePortfolioService from '@modules/portfolios/services/CreatePortfolioService';
-import UpdatePortfolioService from '@modules/portfolios/services/UpdatePortfolioService';
-import DeletePortfolioService from '@modules/portfolios/services/DeletePortfolioService';
+import ListPortfolioService from '@modules/portfolios/services/portfolios/ListPortfolioService';
+import CreatePortfolioService from '@modules/portfolios/services/portfolios/CreatePortfolioService';
+import UpdatePortfolioService from '@modules/portfolios/services/portfolios/UpdatePortfolioService';
+import DeletePortfolioService from '@modules/portfolios/services/portfolios/DeletePortfolioService';
 
 export default class PortfoliosController {
   public async index(request: Request, response: Response): Promise<Response> {

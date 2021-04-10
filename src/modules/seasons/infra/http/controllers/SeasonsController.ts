@@ -54,7 +54,7 @@ export default class SeasonsController {
       end_at: parsedEndAt,
     });
 
-    return response.json({ season });
+    return response.json(season);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {

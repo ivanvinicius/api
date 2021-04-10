@@ -1,4 +1,4 @@
-import { TreeRepository, getTreeRepository } from 'typeorm';
+import { Repository, getRepository } from 'typeorm';
 
 import IPortfoliosRepository from '@modules/portfolios/repositories/IPortfoliosRepository';
 import IFindPortfolioAvoidDuplicateDTO from '@modules/portfolios/dtos/IFindPortfolioAvoidDuplicateDTO';
@@ -7,10 +7,10 @@ import IDeleteDTO from '@shared/dtos/IDeleteDTO';
 import Portfolio from '../entities/Portfolio';
 
 export default class PortfoliosRepository implements IPortfoliosRepository {
-  private ormRepository: TreeRepository<Portfolio>;
+  private ormRepository: Repository<Portfolio>;
 
   constructor() {
-    this.ormRepository = getTreeRepository(Portfolio);
+    this.ormRepository = getRepository(Portfolio);
   }
 
   public async findById(id: string): Promise<Portfolio | undefined> {
@@ -50,7 +50,7 @@ export default class PortfoliosRepository implements IPortfoliosRepository {
       ' ON Product.category_id = Subcategory.id' +
       ' LEFT JOIN categories AS Category' +
       ' ON Category.id = Subcategory.parent_id' +
-      ' WHERE Portfolio.provider_id = $1';
+      ' WHERE Portfolio.provider_id = $1 AND Portfolio.parent_id IS NULL';
 
     return this.ormRepository.query(selectPortfolioByQuery, [provider_id]);
   }

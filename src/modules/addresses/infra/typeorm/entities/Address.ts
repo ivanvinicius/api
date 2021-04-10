@@ -1,19 +1,9 @@
-import {
-  Entity,
-  Tree,
-  Column,
-  PrimaryColumn,
-  TreeChildren,
-  TreeParent,
-  TreeLevelColumn,
-  OneToMany,
-} from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 import User from '@modules/users/infra/typeorm/entities/User';
 
 @Entity('addresses')
-@Tree('materialized-path')
 export default class Address {
   constructor(props: Omit<Address, 'id'>, id?: string) {
     Object.assign(this, props);
@@ -29,16 +19,8 @@ export default class Address {
   @Column('varchar')
   name: string;
 
-  @TreeLevelColumn()
+  @Column()
   parent_id: string;
-
-  @TreeChildren({ cascade: true })
-  children: Address[];
-
-  @TreeParent()
-  parent: Address;
-
-  mpath: string;
 
   @OneToMany(() => User, user => user.address)
   user: User[];

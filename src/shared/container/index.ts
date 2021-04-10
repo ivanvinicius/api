@@ -32,6 +32,9 @@ import SeasonsRepository from '@modules/seasons/infra/typeorm/repositories/Seaso
 import IPortfoliosRepository from '@modules/portfolios/repositories/IPortfoliosRepository';
 import PortfoliosRepository from '@modules/portfolios/infra/typeorm/repositories/PortfoliosRepository';
 
+import IProvidersCompositionsRepository from '@modules/portfolios/repositories/IProvidersCompositionsRepository';
+import ProvidersCompositionsRepository from '@modules/portfolios/infra/typeorm/repositories/ProvidersCompositionsRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -80,4 +83,9 @@ container.registerSingleton<ISeasonsRepository>(
 container.registerSingleton<IPortfoliosRepository>(
   'PortfoliosRepository',
   PortfoliosRepository,
+);
+
+container.registerSingleton<IProvidersCompositionsRepository>(
+  'ProvidersCompositionsRepository',
+  ProvidersCompositionsRepository,
 );

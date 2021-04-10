@@ -1,10 +1,7 @@
 import {
   Entity,
-  Tree,
   Column,
   PrimaryColumn,
-  TreeChildren,
-  TreeParent,
   TreeLevelColumn,
   ManyToOne,
   JoinColumn,
@@ -17,7 +14,6 @@ import Culture from '@modules/cultures/infra/typeorm/entities/Culture';
 import Measure from '@modules/measures/infra/typeorm/entities/Measure';
 
 @Entity('portfolios')
-@Tree('materialized-path')
 export default class Portfolio {
   constructor(props: Omit<Portfolio, 'id'>, id?: string) {
     Object.assign(this, props);
@@ -56,14 +52,6 @@ export default class Portfolio {
 
   @Column('numeric')
   productivity: number;
-
-  mpath: string;
-
-  @TreeChildren({ cascade: true })
-  children: Portfolio[];
-
-  @TreeParent()
-  parent: Portfolio;
 
   @ManyToOne(() => User, user => user.portfolio)
   @JoinColumn({ name: 'provider_id', referencedColumnName: 'id' })

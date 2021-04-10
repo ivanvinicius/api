@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
-import Portfolio from '../infra/typeorm/entities/Portfolio';
-import IPortfoliosRepository from '../repositories/IPortfoliosRepository';
+import Portfolio from '../../infra/typeorm/entities/Portfolio';
+import IPortfoliosRepository from '../../repositories/IPortfoliosRepository';
 
 @injectable()
 export default class ListPortfolioService {

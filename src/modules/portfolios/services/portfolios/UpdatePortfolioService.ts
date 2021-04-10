@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import Portfolio from '../infra/typeorm/entities/Portfolio';
-import IPortfoliosRepository from '../repositories/IPortfoliosRepository';
+import Portfolio from '../../infra/typeorm/entities/Portfolio';
+import IPortfoliosRepository from '../../repositories/IPortfoliosRepository';
 
 interface IRequest {
   id: string;

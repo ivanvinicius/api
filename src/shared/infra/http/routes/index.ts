@@ -13,7 +13,8 @@ import categoriesRouter from '@modules/categories/infra/http/routes/categories.r
 import areasRouter from '@modules/areas/infra/http/routes/areas.routes';
 import seasonsRouter from '@modules/seasons/infra/http/routes/seasons.routes';
 import portfoliosRouter from '@modules/portfolios/infra/http/routes/portfolios.routes';
-import compositionsRouter from '@modules/portfolios/infra/http/routes/compositions.routes';
+import providersCompositionsRouter from '@modules/portfolios/infra/http/routes/providers.compositions.routes';
+import clientsCompositionsRouter from '@modules/portfolios/infra/http/routes/clients.compositions.routes';
 
 const routes = Router();
 
@@ -30,6 +31,7 @@ routes.use('/areas', areasRouter);
 routes.use('/categories', categoriesRouter);
 routes.use('/seasons', seasonsRouter);
 routes.use('/portfolios', portfoliosRouter);
-routes.use('/compositions', compositionsRouter);
+routes.use('/providers-compositions', providersCompositionsRouter);
+routes.use('/clients-compositions', clientsCompositionsRouter);
 
 export default routes;

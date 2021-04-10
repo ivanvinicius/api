@@ -1,16 +1,16 @@
-import { getTreeRepository, TreeRepository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
 import IAddressesRepository from '@modules/addresses/repositories/IAddressesRepository';
 import Address from '../entities/Address';
 
 export default class AddressesRepository implements IAddressesRepository {
-  private ormRepository: TreeRepository<Address>;
+  private ormRepository: Repository<Address>;
 
   constructor() {
-    this.ormRepository = getTreeRepository(Address);
+    this.ormRepository = getRepository(Address);
   }
 
   public async findAll(): Promise<Address[] | undefined> {
-    return this.ormRepository.findTrees();
+    return this.ormRepository.find();
   }
 }
