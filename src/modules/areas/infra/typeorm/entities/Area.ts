@@ -1,7 +1,15 @@
-import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  PrimaryColumn,
+  OneToMany,
+} from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 import User from '@modules/users/infra/typeorm/entities/User';
+import Budget from '@modules/budgets/infra/typeorm/entities/Budget';
 
 @Entity('areas')
 export default class Area {
@@ -37,4 +45,7 @@ export default class Area {
   @ManyToOne(() => User, user => user.area)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user: User;
+
+  @OneToMany(() => Budget, budget => budget.portfolio)
+  budget: Budget[];
 }

@@ -2,9 +2,9 @@ import {
   Entity,
   Column,
   PrimaryColumn,
-  TreeLevelColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
@@ -12,6 +12,7 @@ import User from '@modules/users/infra/typeorm/entities/User';
 import Product from '@modules/products/infra/typeorm/entities/Product';
 import Culture from '@modules/cultures/infra/typeorm/entities/Culture';
 import Measure from '@modules/measures/infra/typeorm/entities/Measure';
+import Budget from '@modules/budgets/infra/typeorm/entities/Budget';
 
 @Entity('portfolios')
 export default class Portfolio {
@@ -26,7 +27,7 @@ export default class Portfolio {
   @PrimaryColumn('uuid')
   readonly id: string;
 
-  @TreeLevelColumn()
+  @Column('uuid')
   parent_id: string;
 
   @Column('uuid')
@@ -68,4 +69,7 @@ export default class Portfolio {
   @ManyToOne(() => Measure, measure => measure.portfolio)
   @JoinColumn({ name: 'measure_id', referencedColumnName: 'id' })
   measure: Measure;
+
+  @OneToMany(() => Budget, budget => budget.portfolio)
+  budget: Budget[];
 }

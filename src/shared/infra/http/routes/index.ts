@@ -15,6 +15,7 @@ import seasonsRouter from '@modules/seasons/infra/http/routes/seasons.routes';
 import portfoliosRouter from '@modules/portfolios/infra/http/routes/portfolios.routes';
 import providersCompositionsRouter from '@modules/portfolios/infra/http/routes/providers.compositions.routes';
 import clientsCompositionsRouter from '@modules/portfolios/infra/http/routes/clients.compositions.routes';
+import budgetsRouter from '@modules/budgets/infra/http/routes/budgets.routes';
 
 const routes = Router();
 
@@ -33,5 +34,6 @@ routes.use('/seasons', seasonsRouter);
 routes.use('/portfolios', portfoliosRouter);
 routes.use('/providers-compositions', providersCompositionsRouter);
 routes.use('/clients-compositions', clientsCompositionsRouter);
+routes.use('/budgets', budgetsRouter);
 
 export default routes;

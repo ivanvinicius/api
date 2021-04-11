@@ -13,6 +13,7 @@ import Address from '@modules/addresses/infra/typeorm/entities/Address';
 import Area from '@modules/areas/infra/typeorm/entities/Area';
 import Season from '@modules/seasons/infra/typeorm/entities/Season';
 import Portfolio from '@modules/portfolios/infra/typeorm/entities/Portfolio';
+import Budget from '@modules/budgets/infra/typeorm/entities/Budget';
 
 @Entity('users')
 export default class User {
@@ -55,4 +56,8 @@ export default class User {
 
   @OneToMany(() => Portfolio, portfolio => portfolio.user)
   portfolio: Portfolio[];
+
+  @OneToMany(() => Budget, budget => budget.user)
+  @OneToMany(() => Budget, budget => budget.provider)
+  budget: Budget[];
 }
