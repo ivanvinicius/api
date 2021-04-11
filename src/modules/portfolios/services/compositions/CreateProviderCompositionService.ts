@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import Portfolio from '@modules/portfolios/infra/typeorm/entities/Portfolio';
-import IProvidersCompositionsRepository from '@modules/portfolios/repositories/IProvidersCompositionsRepository';
+import ICompositionsRepository from '@modules/portfolios/repositories/ICompositionsRepository';
 import AppError from '@shared/errors/AppError';
 
 interface IRequest {
@@ -19,8 +19,8 @@ interface IRequest {
 @injectable()
 export default class CreateProviderCompositionsService {
   constructor(
-    @inject('ProvidersCompositionsRepository')
-    private providersCompositionsRepository: IProvidersCompositionsRepository,
+    @inject('CompositionsRepository')
+    private compositionsRepository: ICompositionsRepository,
   ) {}
 
   public async execute({
@@ -29,7 +29,7 @@ export default class CreateProviderCompositionsService {
     productivity,
     items,
   }: IRequest): Promise<Portfolio[] | undefined> {
-    const compositionExists = await this.providersCompositionsRepository.findProviderCompositionAvoidDuplicate(
+    const compositionExists = await this.compositionsRepository.findProviderCompositionAvoidDuplicate(
       {
         provider_id,
         culture_id,
@@ -51,6 +51,6 @@ export default class CreateProviderCompositionsService {
       productivity,
     }));
 
-    return this.providersCompositionsRepository.create(formattedItems);
+    return this.compositionsRepository.create(formattedItems);
   }
 }

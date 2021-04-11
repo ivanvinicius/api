@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreateProviderCompositionsService from '@modules/portfolios/services/Compositions/CreateProviderCompositionService';
-import ListProviderCompositionService from '@modules/portfolios/services/Compositions/ListProviderCompositionService';
-import DeleteProviderCompositionService from '@modules/portfolios/services/Compositions/DeleteProviderCompositionService';
+import CreateProviderCompositionsService from '@modules/portfolios/services/compositions/CreateProviderCompositionService';
+import ListProviderCompositionService from '@modules/portfolios/services/compositions/ListProviderCompositionService';
+import DeleteProviderCompositionService from '@modules/portfolios/services/compositions/DeleteProviderCompositionService';
 
 export default class ProvidersCompositionsController {
   public async index(request: Request, response: Response): Promise<Response> {

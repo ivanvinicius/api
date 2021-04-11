@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import Portfolio from '@modules/portfolios/infra/typeorm/entities/Portfolio';
-import IProvidersCompositionsRepository from '@modules/portfolios/repositories/IProvidersCompositionsRepository';
+import ICompositionsRepository from '@modules/portfolios/repositories/ICompositionsRepository';
 
 interface IRequest {
   provider_id: string;
@@ -11,8 +11,8 @@ interface IRequest {
 @injectable()
 export default class ListProviderCompositionService {
   constructor(
-    @inject('ProvidersCompositionsRepository')
-    private providersCompositionsRepository: IProvidersCompositionsRepository,
+    @inject('CompositionsRepository')
+    private compositionsRepository: ICompositionsRepository,
   ) {}
 
   public async execute({
@@ -20,12 +20,10 @@ export default class ListProviderCompositionService {
     culture_id,
     productivity,
   }: IRequest): Promise<Portfolio[] | undefined> {
-    return this.providersCompositionsRepository.findAllByProviderCultureProductivity(
-      {
-        provider_id,
-        culture_id,
-        productivity,
-      },
-    );
+    return this.compositionsRepository.findAllByProviderCultureProductivity({
+      provider_id,
+      culture_id,
+      productivity,
+    });
   }
 }

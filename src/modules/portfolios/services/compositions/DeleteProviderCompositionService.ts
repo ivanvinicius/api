@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import Portfolio from '@modules/portfolios/infra/typeorm/entities/Portfolio';
-import IProvidersCompositionsRepository from '@modules/portfolios/repositories/IProvidersCompositionsRepository';
+import ICompositionsRepository from '@modules/portfolios/repositories/ICompositionsRepository';
 import AppError from '@shared/errors/AppError';
 import IDeleteDTO from '@shared/dtos/IDeleteDTO';
 
@@ -13,8 +13,8 @@ interface IRequest {
 @injectable()
 export default class DeleteProviderCompositionService {
   constructor(
-    @inject('ProvidersCompositionsRepository')
-    private providersCompositionsRepository: IProvidersCompositionsRepository,
+    @inject('CompositionsRepository')
+    private compositionsRepository: ICompositionsRepository,
   ) {}
 
   public async execute({
@@ -22,7 +22,7 @@ export default class DeleteProviderCompositionService {
     culture_id,
     productivity,
   }: IRequest): Promise<IDeleteDTO> {
-    const compositionsExists = await this.providersCompositionsRepository.findAllByProviderCultureProductivity(
+    const compositionsExists = await this.compositionsRepository.findAllByProviderCultureProductivity(
       {
         provider_id,
         culture_id,
@@ -30,7 +30,7 @@ export default class DeleteProviderCompositionService {
       },
     );
 
-    if (!compositionsExists) {
+    if (compositionsExists?.length === 0 || !compositionsExists) {
       throw new AppError('A composição não foi encontrada.', 400);
     }
 
@@ -40,9 +40,7 @@ export default class DeleteProviderCompositionService {
       ids.push(composition.id),
     );
 
-    const deletedCompositions = await this.providersCompositionsRepository.delete(
-      ids,
-    );
+    const deletedCompositions = await this.compositionsRepository.delete(ids);
 
     if (deletedCompositions.affected === 0) {
       throw new AppError('Impossível deletar o item.', 400);

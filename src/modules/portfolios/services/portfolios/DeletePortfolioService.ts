@@ -15,7 +15,7 @@ export default class DeletePortfolioService {
     const checkPortfolioExists = await this.portfoliosRepository.findById(id);
 
     if (!checkPortfolioExists) {
-      throw new AppError('Portfólio informada não existe.', 400);
+      throw new AppError('Portfólio informado não existe.', 400);
     }
 
     const deletedPortfolio = await this.portfoliosRepository.delete(id);
