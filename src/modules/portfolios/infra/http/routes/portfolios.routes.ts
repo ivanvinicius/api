@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
+import ensureIsProvider from '@shared/infra/http/middlewares/ensureIsProvider';
 import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
 import PortfoliosController from '../controllers/PortfoliosController';
 
@@ -12,6 +13,7 @@ portfoliosRouter.get('/', portfoliosController.index);
 
 portfoliosRouter.post(
   '/',
+  ensureIsProvider,
   celebrate({
     [Segments.BODY]: {
       product_id: Joi.string().required(),
@@ -26,6 +28,7 @@ portfoliosRouter.post(
 
 portfoliosRouter.put(
   '/',
+  ensureIsProvider,
   celebrate({
     [Segments.BODY]: {
       id: Joi.string().required(),
@@ -40,6 +43,7 @@ portfoliosRouter.put(
 
 portfoliosRouter.delete(
   '/:id',
+  ensureIsProvider,
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().required(),

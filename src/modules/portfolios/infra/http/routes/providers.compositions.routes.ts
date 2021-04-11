@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
+import ensureIsProvider from '@shared/infra/http/middlewares/ensureIsProvider';
 import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
 import ProvidersCompositionsController from '../controllers/ProvidersCompositionsController';
 
@@ -22,6 +23,7 @@ providersCompositionsRouter.get(
 
 providersCompositionsRouter.post(
   '/',
+  ensureIsProvider,
   celebrate({
     [Segments.BODY]: {
       culture_id: Joi.string().required(),
@@ -35,6 +37,7 @@ providersCompositionsRouter.post(
 
 providersCompositionsRouter.delete(
   '/',
+  ensureIsProvider,
   celebrate({
     [Segments.QUERY]: {
       culture_id: Joi.string().required(),

@@ -1,3 +1,0 @@
-terminar rotinas
-seeds
-ensureprovider
