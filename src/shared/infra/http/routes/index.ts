@@ -3,7 +3,8 @@ import { Router } from 'express';
 import clientsRouter from '@modules/users/infra/http/routes/clients.routes';
 import providersRouter from '@modules/users/infra/http/routes/providers.routes';
 import sessionsRouter from '@modules/users/infra/http/routes/sessions.routes';
-import addressesRouter from '@modules/addresses/infra/http/routes/addresses.routes';
+import statesRouter from '@modules/addresses/infra/http/routes/states.routes';
+import citiesRouter from '@modules/addresses/infra/http/routes/cities.routes';
 
 import productsRouter from '@modules/products/infra/http/routes/products.routes';
 import brandsRouter from '@modules/brands/infra/http/routes/brands.routes';
@@ -22,7 +23,8 @@ const routes = Router();
 routes.use('/clients', clientsRouter);
 routes.use('/providers', providersRouter);
 routes.use('/sessions', sessionsRouter);
-routes.use('/addresses', addressesRouter);
+routes.use('/states', statesRouter);
+routes.use('/cities', citiesRouter);
 
 routes.use('/products', productsRouter);
 routes.use('/brands', brandsRouter);

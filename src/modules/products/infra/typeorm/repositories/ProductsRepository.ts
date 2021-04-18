@@ -18,10 +18,10 @@ export default class ProductsRepository implements IProductsRepository {
       ' Product.composition AS composition,' +
       ' Brand.id AS brand_id,' +
       ' Brand.name AS brand_name,' +
-      ' categories.id AS categories_id,' +
-      ' categories.name AS categories_name,' +
-      ' Subcategories.id AS subcategories_id,' +
-      ' Subcategories.name AS subcategories_name' +
+      ' categories.id AS category_id,' +
+      ' categories.name AS category_name,' +
+      ' Subcategories.id AS subcategory_id,' +
+      ' Subcategories.name AS subcategory_name' +
       ' FROM products AS Product' +
       ' LEFT JOIN brands AS Brand' +
       ' ON Brand.id = Product.brand_id     ' +

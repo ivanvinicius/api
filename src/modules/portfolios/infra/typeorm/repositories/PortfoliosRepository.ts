@@ -1,4 +1,4 @@
-import { Repository, getRepository } from 'typeorm';
+import { Repository, getRepository, In } from 'typeorm';
 
 import IPortfoliosRepository from '@modules/portfolios/repositories/IPortfoliosRepository';
 import IFindPortfolioAvoidDuplicateDTO from '@modules/portfolios/dtos/IFindPortfolioAvoidDuplicateDTO';
@@ -21,16 +21,27 @@ export default class PortfoliosRepository implements IPortfoliosRepository {
     });
   }
 
+  public async findAllByIds(
+    ids: Array<string>,
+  ): Promise<Portfolio[] | undefined> {
+    return this.ormRepository.find({
+      where: {
+        id: In(ids),
+      },
+    });
+  }
+
   public async findAllByProvider(
     provider_id: string,
   ): Promise<Portfolio[] | undefined> {
     const selectPortfolioByQuery =
-      'SELECT Portfolio.id AS portfolio_id,' +
-      ' Portfolio.size AS portfolio_size,' +
-      ' Portfolio.price AS portfolio_price,' +
+      'SELECT Portfolio.id AS id,' +
+      ' Portfolio.size AS size,' +
+      ' Portfolio.price AS price,' +
       ' Portfolio.provider_id AS provider_id,' +
       ' Product.id AS product_id,' +
       ' Product.name AS product_name,' +
+      ' Product.composition AS product_composition,' +
       ' Brand.id AS brand_id,' +
       ' Brand.name AS brand_name,' +
       ' Measure.id AS measure_id,' +
@@ -93,7 +104,7 @@ export default class PortfoliosRepository implements IPortfoliosRepository {
     return this.ormRepository.save(data);
   }
 
-  public async delete(id: string): Promise<IDeleteDTO> {
-    return this.ormRepository.delete(id);
+  public async delete(ids: Array<string>): Promise<IDeleteDTO> {
+    return this.ormRepository.delete(ids);
   }
 }

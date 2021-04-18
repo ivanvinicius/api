@@ -50,11 +50,11 @@ export default class PortfoliosController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
+    const { ids } = request.body;
 
     const deletePortfolio = container.resolve(DeletePortfolioService);
 
-    const portfolio = await deletePortfolio.execute(id);
+    const portfolio = await deletePortfolio.execute({ ids });
 
     return response.json(portfolio);
   }

@@ -42,11 +42,11 @@ portfoliosRouter.put(
 );
 
 portfoliosRouter.delete(
-  '/:id',
+  '/',
   ensureIsProvider,
   celebrate({
-    [Segments.PARAMS]: {
-      id: Joi.string().required(),
+    [Segments.BODY]: {
+      ids: Joi.array().required(),
     },
   }),
   portfoliosController.delete,
