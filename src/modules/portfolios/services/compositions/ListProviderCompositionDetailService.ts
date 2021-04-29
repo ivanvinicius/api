@@ -5,9 +5,11 @@ import ICompositionsRepository from '@modules/portfolios/repositories/ICompositi
 
 interface IRequest {
   provider_id: string;
+  culture_id: string;
+  productivity: number;
 }
 @injectable()
-export default class ListProviderCompositionService {
+export default class ListProviderCompositionDetailService {
   constructor(
     @inject('CompositionsRepository')
     private compositionsRepository: ICompositionsRepository,
@@ -15,9 +17,13 @@ export default class ListProviderCompositionService {
 
   public async execute({
     provider_id,
+    culture_id,
+    productivity,
   }: IRequest): Promise<Portfolio[] | undefined> {
-    return this.compositionsRepository.findAllGroupByCultureProductivity(
+    return this.compositionsRepository.findAllByProviderCultureProductivity({
       provider_id,
-    );
+      culture_id,
+      productivity,
+    });
   }
 }

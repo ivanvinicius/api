@@ -16,6 +16,9 @@ export default interface ICompositionsRepository {
   findProvidersAvailableCompositions(
     data: IFindProvidersAvailableCompositionsDTO,
   ): Promise<Portfolio[] | undefined>;
+  findAllGroupByCultureProductivity(
+    provider_id: string,
+  ): Promise<Portfolio[] | undefined>;
 
   create(
     data: ICreateProviderCompositionDTO[],

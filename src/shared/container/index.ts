@@ -38,6 +38,9 @@ import CompositionsRepository from '@modules/portfolios/infra/typeorm/repositori
 import IBudgetsRepository from '@modules/budgets/repositories/IBudgetsRepository';
 import BudgetsRepository from '@modules/budgets/infra/typeorm/repositories/BudgetsRepository';
 
+import IProductivityRepository from '@modules/portfolios/repositories/IProductivityRepository';
+import ProductivityRepository from '@modules/portfolios/infra/typeorm/repositories/ProductivityRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -96,4 +99,9 @@ container.registerSingleton<ICompositionsRepository>(
 container.registerSingleton<IBudgetsRepository>(
   'BudgetsRepository',
   BudgetsRepository,
+);
+
+container.registerSingleton<IProductivityRepository>(
+  'ProductivityRepository',
+  ProductivityRepository,
 );

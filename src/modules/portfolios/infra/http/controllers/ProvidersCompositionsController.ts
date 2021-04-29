@@ -2,23 +2,32 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateProviderCompositionsService from '@modules/portfolios/services/compositions/CreateProviderCompositionService';
-import ListProviderCompositionService from '@modules/portfolios/services/compositions/ListProviderCompositionService';
+import ListProviderCompositionDetailService from '@modules/portfolios/services/compositions/ListProviderCompositionDetailService';
 import DeleteProviderCompositionService from '@modules/portfolios/services/compositions/DeleteProviderCompositionService';
+import ListProviderCompositionService from '@modules/portfolios/services/compositions/ListProviderCompositionService';
 
 export default class ProvidersCompositionsController {
   public async index(request: Request, response: Response): Promise<Response> {
+    let service;
+    let responseService;
     const provider_id = request.user.id;
     const { culture_id, productivity } = request.query;
 
-    const listComposition = container.resolve(ListProviderCompositionService);
+    if (!culture_id || !productivity) {
+      service = container.resolve(ListProviderCompositionService);
 
-    const compositions = await listComposition.execute({
-      provider_id,
-      culture_id: String(culture_id),
-      productivity: Number(productivity),
-    });
+      responseService = await service.execute({ provider_id });
+    } else {
+      service = container.resolve(ListProviderCompositionDetailService);
 
-    return response.json(compositions);
+      responseService = await service.execute({
+        provider_id,
+        culture_id: String(culture_id),
+        productivity: Number(productivity),
+      });
+    }
+
+    return response.json(responseService);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {

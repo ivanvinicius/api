@@ -14,8 +14,8 @@ providersCompositionsRouter.get(
   '/',
   celebrate({
     [Segments.QUERY]: {
-      culture_id: Joi.string().required(),
-      productivity: Joi.number().required(),
+      culture_id: Joi.string(),
+      productivity: Joi.number(),
     },
   }),
   providersCompositionsController.index,

@@ -17,6 +17,7 @@ import portfoliosRouter from '@modules/portfolios/infra/http/routes/portfolios.r
 import providersCompositionsRouter from '@modules/portfolios/infra/http/routes/providers.compositions.routes';
 import clientsCompositionsRouter from '@modules/portfolios/infra/http/routes/clients.compositions.routes';
 import budgetsRouter from '@modules/budgets/infra/http/routes/budgets.routes';
+import productivityRouter from '@modules/portfolios/infra/http/routes/productivity.routes';
 
 const routes = Router();
 
@@ -37,5 +38,6 @@ routes.use('/portfolios', portfoliosRouter);
 routes.use('/providers-compositions', providersCompositionsRouter);
 routes.use('/clients-compositions', clientsCompositionsRouter);
 routes.use('/budgets', budgetsRouter);
+routes.use('/productivity', productivityRouter);
 
 export default routes;

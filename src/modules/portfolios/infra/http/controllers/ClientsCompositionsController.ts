@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import ListProviderWithAvaibleCompositionService from '@modules/portfolios/services/compositions/ListProviderWithAvaibleCompositionService';
-import ListProviderCompositionService from '@modules/portfolios/services/compositions/ListProviderCompositionService';
+import ListProviderCompositionDetailService from '@modules/portfolios/services/compositions/ListProviderCompositionDetailService';
 
 export default class ClientsCompositionsController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -18,7 +18,7 @@ export default class ClientsCompositionsController {
         productivity: Number(productivity),
       });
     } else {
-      service = container.resolve(ListProviderCompositionService);
+      service = container.resolve(ListProviderCompositionDetailService);
 
       responseService = await service.execute({
         provider_id: String(provider_id),

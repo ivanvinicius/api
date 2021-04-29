@@ -19,6 +19,30 @@ export default class CompositionsRepository implements ICompositionsRepository {
     return this.ormRepository.findOne({ where: { id } });
   }
 
+  public async findAllGroupByCultureProductivity(
+    provider_id: string,
+  ): Promise<Portfolio[] | undefined> {
+    const sqlSelect =
+      'SELECT Portfolio.productivity AS productivity,' +
+      ' Provider.id AS provider_id,' +
+      ' Provider.name AS provider_name,' +
+      ' Culture.id AS culture_id,' +
+      ' Culture.name AS culture_name' +
+      ' FROM portfolios AS Portfolio' +
+      ' LEFT JOIN cultures AS Culture' +
+      ' ON Portfolio.culture_id = Culture.id' +
+      ' LEFT JOIN users AS Provider' +
+      ' ON Portfolio.provider_id = Provider.id' +
+      ' WHERE Portfolio.productivity IS NOT NULL' +
+      ' AND Provider.id = $1' +
+      ' GROUP BY' +
+      ' Portfolio.productivity,' +
+      ' Provider.id,' +
+      ' Culture.id';
+
+    return this.ormRepository.query(sqlSelect, [provider_id]);
+  }
+
   public async findProviderCompositionAvoidDuplicate({
     provider_id,
     culture_id,
