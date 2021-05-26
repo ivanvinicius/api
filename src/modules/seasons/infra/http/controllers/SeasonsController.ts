@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { parseISO, getYear } from 'date-fns';
+import { parseISO } from 'date-fns';
 
 import ListUserSeasonService from '@modules/seasons/services/ListUserSeasonService';
 import CreateSeasonService from '@modules/seasons/services/CreateSeasonService';
@@ -29,7 +29,7 @@ export default class SeasonsController {
 
     const season = await createSeasons.execute({
       user_id,
-      name: `${getYear(parsedStartAt)}/${getYear(parsedEndAt)} ${name}`,
+      name,
       description,
       start_at: parsedStartAt,
       end_at: parsedEndAt,

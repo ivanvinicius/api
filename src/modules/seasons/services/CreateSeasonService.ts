@@ -1,6 +1,6 @@
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import { differenceInMonths, isBefore } from 'date-fns';
+import { differenceInMonths } from 'date-fns';
 
 import Season from '../infra/typeorm/entities/Season';
 import ISeasonsRepository from '../repositories/ISeasonsRepository';
@@ -35,13 +35,6 @@ export default class CreateSeasonService {
 
     if (seasonNameExists) {
       throw new AppError('O nome da temporada já está em uso.', 400);
-    }
-
-    if (isBefore(start_at, new Date(Date.now()))) {
-      throw new AppError(
-        'A data de início deve ser maior que a data atual.',
-        400,
-      );
     }
 
     if (differenceInMonths(end_at, start_at) < 1) {

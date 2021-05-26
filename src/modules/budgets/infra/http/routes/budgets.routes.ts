@@ -8,7 +8,18 @@ const budgetsRouter = Router();
 const budgetsController = new BudgetsController();
 
 budgetsRouter.use(ensureAuthenticated);
-budgetsRouter.get('/', budgetsController.index);
+budgetsRouter.get(
+  '/',
+  celebrate({
+    [Segments.QUERY]: {
+      provider_id: Joi.string(),
+      productivity: Joi.string(),
+      culture_id: Joi.string(),
+    },
+  }),
+
+  budgetsController.index,
+);
 
 budgetsRouter.post(
   '/',
