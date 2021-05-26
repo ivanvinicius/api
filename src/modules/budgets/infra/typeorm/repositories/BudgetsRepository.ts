@@ -58,7 +58,8 @@ export default class BudgetsRepository implements IBudgetsRepository {
     productivity,
   }: IFindBudgetDetailDTO): Promise<Budget[] | undefined> {
     const sqlSelect =
-      ' SELECT Budget.amount_usage AS amount_usage,' +
+      ' SELECT Budget.id AS id,' +
+      ' Budget.amount_usage AS amount_usage,' +
       ' Budget.amount_quantity AS amount_quantity,' +
       ' Budget.amount_cost AS amount_cost,' +
       ' Composition.recommendation AS portfolio_recommendation,' +
