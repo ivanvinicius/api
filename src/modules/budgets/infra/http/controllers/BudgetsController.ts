@@ -8,7 +8,7 @@ import ListBudgetDetailService from '@modules/budgets/services/ListBudgetDetailS
 export default class BudgetsController {
   public async index(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
-    const { provider_id, productivity, culture_id } = request.query;
+    const { provider_id, productivity, culture_id, area_id } = request.query;
     let service;
     let responseService;
 
@@ -24,6 +24,7 @@ export default class BudgetsController {
         provider_id: String(provider_id),
         productivity: Number(productivity),
         culture_id: String(culture_id),
+        area_id: String(area_id),
       });
     }
 

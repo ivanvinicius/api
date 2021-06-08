@@ -3,4 +3,5 @@ export default interface IFindBudgetDetailDTO {
   provider_id: string;
   culture_id: string;
   productivity: number;
+  area_id: string;
 }

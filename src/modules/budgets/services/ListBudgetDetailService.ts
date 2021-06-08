@@ -8,6 +8,7 @@ interface IRequest {
   provider_id: string;
   culture_id: string;
   productivity: number;
+  area_id: string;
 }
 
 @injectable()
@@ -21,12 +22,14 @@ export default class ListBudgetDetailService {
     user_id,
     provider_id,
     culture_id,
+    area_id,
     productivity,
   }: IRequest): Promise<Budget[] | undefined> {
     return this.budgetsRepository.findBudgetDetail({
       user_id,
       provider_id,
       culture_id,
+      area_id,
       productivity,
     });
   }

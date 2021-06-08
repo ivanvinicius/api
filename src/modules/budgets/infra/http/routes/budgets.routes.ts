@@ -15,6 +15,7 @@ budgetsRouter.get(
       provider_id: Joi.string(),
       productivity: Joi.string(),
       culture_id: Joi.string(),
+      area_id: Joi.string(),
     },
   }),
 

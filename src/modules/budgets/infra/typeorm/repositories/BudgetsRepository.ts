@@ -56,6 +56,7 @@ export default class BudgetsRepository implements IBudgetsRepository {
     provider_id,
     culture_id,
     productivity,
+    area_id,
   }: IFindBudgetDetailDTO): Promise<Budget[] | undefined> {
     const sqlSelect =
       ' SELECT Budget.id AS id,' +
@@ -95,12 +96,14 @@ export default class BudgetsRepository implements IBudgetsRepository {
       ' WHERE Budget.provider_id = $1' +
       ' AND Budget.user_id = $2' +
       ' AND Composition.culture_id = $3' +
-      ' AND Composition.productivity = $4';
+      ' AND Budget.area_id = $4' +
+      ' AND Composition.productivity = $5';
 
     return this.ormRepository.query(sqlSelect, [
       provider_id,
       user_id,
       culture_id,
+      area_id,
       productivity,
     ]);
   }
